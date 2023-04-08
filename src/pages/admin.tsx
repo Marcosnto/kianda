@@ -1,3 +1,10 @@
+import HeaderCMS from "@/components/HeaderCMS/HeaderCMS";
+import { Box } from "@chakra-ui/react";
+
 export default function Admin() {
-  return <div>Admin page</div>;
+  return (
+    <Box>
+      <HeaderCMS />
+    </Box>
+  );
 }

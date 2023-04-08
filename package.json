@@ -10,6 +10,11 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
+  "lint-staged": {
+    "src/**/*": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
   "dependencies": {
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",

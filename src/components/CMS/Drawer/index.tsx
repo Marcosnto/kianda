@@ -8,12 +8,20 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 
+import { userOptions } from "@/data/menuOptionsPermitions";
+import MenuOptions from "../MenuOptions";
+
 type DrawnerMenu = {
   onClose: () => void;
   isOpen: boolean;
+  menuOptions: userOptions;
 };
 
-export default function DrawerMenu({ onClose, isOpen }: DrawnerMenu) {
+export default function DrawerMenu({
+  onClose,
+  isOpen,
+  menuOptions,
+}: DrawnerMenu) {
   return (
     <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay />
@@ -33,7 +41,13 @@ export default function DrawerMenu({ onClose, isOpen }: DrawnerMenu) {
           />
         </DrawerHeader>
         <DrawerBody>
-          <p>Menu options here</p>
+          {menuOptions.options.map((option) => (
+            <MenuOptions
+              key={option.key}
+              displayName={option.displayName}
+              icon={option.icon}
+            />
+          ))}
         </DrawerBody>
       </DrawerContent>
     </Drawer>

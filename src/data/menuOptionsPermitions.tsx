@@ -1,5 +1,12 @@
+import UserForm from "@/components/CMS/Forms/User";
+import UsersList from "@/components/CMS/UsersList";
 import { Icon } from "@chakra-ui/react";
-import { IoPeopleOutline, IoBookOutline } from "react-icons/io5";
+import {
+  IoPeopleOutline,
+  IoBookOutline,
+  IoDocumentTextOutline,
+  IoFolderOutline,
+} from "react-icons/io5";
 
 export type OptionsProps = {
   key: string;
@@ -9,8 +16,9 @@ export type OptionsProps = {
 };
 
 export type userOptions = {
-  user: string;
-  options: Array<OptionsProps>;
+  type: string;
+  users: Array<OptionsProps>;
+  blog: Array<OptionsProps>;
 };
 
 function getIcon(iconName: any) {
@@ -18,17 +26,33 @@ function getIcon(iconName: any) {
 }
 
 export const admin: userOptions = {
-  user: "admin",
-  options: [
-    {
-      key: "user-admin-01",
-      icon: getIcon(IoPeopleOutline),
-      displayName: "Users",
-    },
+  type: "admin",
+  users: [
     {
       key: "blog-admin-01",
       icon: getIcon(IoBookOutline),
-      displayName: "Blog",
+      displayName: "Cadastrar Pacientes",
+      render: <UserForm />,
+    },
+    {
+      key: "user-admin-01",
+      icon: getIcon(IoPeopleOutline),
+      displayName: "Listar Pacientes",
+      render: <UsersList />,
+    },
+  ],
+  blog: [
+    {
+      key: "user-admin-01",
+      icon: getIcon(IoDocumentTextOutline),
+      displayName: "Escrever Artigo",
+      render: <div>Escrever Artigo</div>,
+    },
+    {
+      key: "user-admin-01",
+      icon: getIcon(IoFolderOutline),
+      displayName: "Lista de Artigos",
+      render: <div>Listar Artigos</div>,
     },
   ],
 };

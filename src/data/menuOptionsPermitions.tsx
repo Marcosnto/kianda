@@ -29,13 +29,13 @@ export const admin: userOptions = {
   type: "admin",
   users: [
     {
-      key: "blog-admin-01",
+      key: "user-admin-01",
       icon: getIcon(IoBookOutline),
       displayName: "Cadastrar Pacientes",
       render: <UserForm />,
     },
     {
-      key: "user-admin-01",
+      key: "user-admin-02",
       icon: getIcon(IoPeopleOutline),
       displayName: "Listar Pacientes",
       render: <UsersList />,
@@ -43,13 +43,13 @@ export const admin: userOptions = {
   ],
   blog: [
     {
-      key: "user-admin-01",
+      key: "blog-admin-01",
       icon: getIcon(IoDocumentTextOutline),
       displayName: "Escrever Artigo",
       render: <div>Escrever Artigo</div>,
     },
     {
-      key: "user-admin-01",
+      key: "blog-admin-02",
       icon: getIcon(IoFolderOutline),
       displayName: "Lista de Artigos",
       render: <div>Listar Artigos</div>,

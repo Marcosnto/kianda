@@ -19,8 +19,8 @@ export default function Partner({ errors, register }: FormReactHooksProps) {
 
   return (
     <>
-      <Heading as="h1" size="lg">
-        Cônjuge
+      <Heading as="h2" size="md">
+        Em caso de Cônjuge
       </Heading>
       <Divider />
       <FormControl isInvalid={!!errors.spouse?.fullName} isRequired>

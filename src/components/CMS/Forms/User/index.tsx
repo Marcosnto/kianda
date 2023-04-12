@@ -8,7 +8,9 @@ import {
 
 import GeneralInformations from "./GeneralInformations";
 import Partner from "./Partner";
-import EmergencyContact from "./EmergencyContact";
+import { Box, Button, Heading, Stack } from "@chakra-ui/react";
+import FirstEmergencyContact from "./FirstEmergencyContact copy";
+import SecondEmergencyContact from "./SecondEmergencyContact";
 
 type SpouseProps = {
   fullName?: string;
@@ -44,7 +46,8 @@ type TherapeuticContractProps = {
   childrens: number;
   civilStatus: string;
   spouse: SpouseProps;
-  emergencyContact: EmergencyContactProps;
+  firstEmergencyContact: EmergencyContactProps;
+  secondEmergencyContact: EmergencyContactProps;
 };
 
 export type FormReactHooksProps = {
@@ -64,21 +67,48 @@ export default function UserForm() {
     console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <GeneralInformations errors={errors} register={register} watch={watch} />
-      <Partner errors={errors} register={register} watch={watch} />
-      <EmergencyContact
-        formNumber={1}
-        errors={errors}
-        register={register}
-        watch={watch}
-      />
-      <EmergencyContact
-        formNumber={2}
-        errors={errors}
-        register={register}
-        watch={watch}
-      />
-    </form>
+    <>
+      <Heading textAlign="center" mb="10" as="h1" size="xl">
+        Contrato Terapêutico
+      </Heading>
+      <Box
+        onSubmit={handleSubmit(onSubmit)}
+        display="flex"
+        flexDir="column"
+        gap="4"
+      >
+        <GeneralInformations
+          errors={errors}
+          register={register}
+          watch={watch}
+        />
+        <Partner errors={errors} register={register} watch={watch} />
+        <FirstEmergencyContact
+          errors={errors}
+          register={register}
+          watch={watch}
+        />
+        <SecondEmergencyContact
+          errors={errors}
+          register={register}
+          watch={watch}
+        />
+        <Stack
+          direction="row"
+          spacing={4}
+          align="center"
+          justifyContent="space-around"
+          mt="6"
+          mb="8"
+        >
+          <Button colorScheme="teal" variant="solid" type="reset">
+            Cancelar
+          </Button>
+          <Button colorScheme="teal" variant="outline" type="submit">
+            Salvar
+          </Button>
+        </Stack>
+      </Box>
+    </>
   );
 }

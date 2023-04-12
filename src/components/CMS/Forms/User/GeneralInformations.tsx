@@ -27,7 +27,7 @@ export default function GeneralInformations({
 
   return (
     <>
-      <Heading as="h1" size="lg">
+      <Heading as="h2" size="md">
         Informações Gerais
       </Heading>
       <Divider />

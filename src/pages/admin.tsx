@@ -1,12 +1,22 @@
+import Content from "@/components/CMS/Content";
 import HeaderCMS from "@/components/CMS/HeaderCMS";
 import Menu from "@/components/CMS/Menu";
 import { Grid, GridItem } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 export default function Admin() {
+  const [currentComponent, setCurrentComponent] = useState(<div>Teste</div>);
+
   return (
     <Grid
       h="100vh"
       templateAreas={[
+        `
+        "header header"
+        "content content"
+        "content content"
+        "footer footer"
+      `,
         `
         "header header"
         "content content"
@@ -21,21 +31,30 @@ export default function Admin() {
       `,
       ]}
       gridTemplateRows={"4.3rem auto auto 2rem"}
-      gridTemplateColumns={"1fr 2fr"}
+      gridTemplateColumns={["none", "none", "1.5fr 3fr", "1fr 3fr"]}
     >
-      <GridItem area={"header"}>
-        <HeaderCMS />
+      <GridItem area={"header"} background={"yellow.800"} color="#FFF">
+        <HeaderCMS setCurrentComponent={setCurrentComponent} />
       </GridItem>
 
-      <GridItem display={["none", "block"]} area={"sidenav"}>
-        <Menu />
+      <GridItem
+        display={["none", "none", "block"]}
+        area={"sidenav"}
+        boxShadow="md"
+      >
+        <Menu setCurrentComponent={setCurrentComponent} />
       </GridItem>
 
-      <GridItem area={"content"} background="gray.100">
-        <div>content</div>
+      <GridItem area={"content"}>
+        <Content>{currentComponent}</Content>
       </GridItem>
 
-      <GridItem area={"footer"} background="gray.100">
+      <GridItem
+        area={"footer"}
+        background="yellow.800"
+        color="#FFF"
+        textAlign="center"
+      >
         <div>footer</div>
       </GridItem>
     </Grid>

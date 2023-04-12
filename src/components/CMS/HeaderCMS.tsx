@@ -5,7 +5,7 @@ import DrawnerMenu from "@/components/CMS/Drawer";
 import AvatarMenu from "@/components/CMS/AvatarMenu";
 import { admin } from "@/data/menuOptionsPermitions";
 
-export default function HeaderCMS() {
+export default function HeaderCMS(setCurrentComponent: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -17,7 +17,6 @@ export default function HeaderCMS() {
       gap="4"
       boxShadow="sm"
       p="2.5"
-      background="#FFFF"
     >
       <IconButton
         aria-label="Opções"
@@ -29,7 +28,12 @@ export default function HeaderCMS() {
       <Heading as="h1" size="md" noOfLines={1}>
         Tornar-se Negro
       </Heading>
-      <DrawnerMenu onClose={onClose} isOpen={isOpen} menuOptions={admin} />
+      <DrawnerMenu
+        onClose={onClose}
+        isOpen={isOpen}
+        menuOptions={admin}
+        setCurrentComponent={setCurrentComponent}
+      />
       <AvatarMenu />
     </Box>
   );

@@ -1,5 +1,6 @@
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import {
+  Box,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -15,12 +16,14 @@ type DrawnerMenu = {
   onClose: () => void;
   isOpen: boolean;
   menuOptions: userOptions;
+  setCurrentComponent: () => void;
 };
 
 export default function DrawerMenu({
   onClose,
   isOpen,
   menuOptions,
+  setCurrentComponent,
 }: DrawnerMenu) {
   return (
     <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
@@ -41,11 +44,12 @@ export default function DrawerMenu({
           />
         </DrawerHeader>
         <DrawerBody>
-          {menuOptions.options.map((option) => (
+          {menuOptions.users.map((option) => (
             <MenuOptions
               key={option.key}
               displayName={option.displayName}
               icon={option.icon}
+              setCurrentComponent={setCurrentComponent}
             />
           ))}
         </DrawerBody>

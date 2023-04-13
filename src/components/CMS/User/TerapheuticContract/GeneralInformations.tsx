@@ -10,7 +10,6 @@ import {
   Heading,
   Divider,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { FormReactHooksProps } from ".";
 
 export default function GeneralInformations({
@@ -18,8 +17,6 @@ export default function GeneralInformations({
   register,
   watch,
 }: FormReactHooksProps) {
-  const [input, setInput] = useState();
-
   return (
     <>
       <Heading as="h2" size="md">

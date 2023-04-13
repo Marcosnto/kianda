@@ -6,17 +6,12 @@ import {
   Heading,
   Divider,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { FormReactHooksProps } from ".";
 
 export default function SecondEmergencyContact({
   errors,
   register,
 }: FormReactHooksProps) {
-  const [input, setInput] = useState();
-
-  const handleInputChange = (e: any) => setInput(e.target.value);
-
   return (
     <>
       <Heading as="h2" size="md">

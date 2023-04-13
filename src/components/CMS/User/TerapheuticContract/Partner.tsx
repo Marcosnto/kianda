@@ -7,16 +7,9 @@ import {
   Heading,
   Divider,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { FormReactHooksProps } from ".";
 
 export default function Partner({ errors, register }: FormReactHooksProps) {
-  const [input, setInput] = useState();
-
-  const handleInputChange = (e: any) => setInput(e.target.value);
-
-  const isError = input === "";
-
   return (
     <>
       <Heading as="h2" size="md">

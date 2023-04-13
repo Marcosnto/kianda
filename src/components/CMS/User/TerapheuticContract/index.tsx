@@ -61,7 +61,7 @@ export default function UserForm() {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<TherapeuticContractProps>();
   const onSubmit: SubmitHandler<TherapeuticContractProps> = (data) =>
     console.log(data);

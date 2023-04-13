@@ -2,7 +2,6 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  FormHelperText,
   Input,
   Select,
   RadioGroup,
@@ -20,10 +19,6 @@ export default function GeneralInformations({
   watch,
 }: FormReactHooksProps) {
   const [input, setInput] = useState();
-
-  const handleInputChange = (e: any) => setInput(e.target.value);
-
-  const isError = input === "";
 
   return (
     <>

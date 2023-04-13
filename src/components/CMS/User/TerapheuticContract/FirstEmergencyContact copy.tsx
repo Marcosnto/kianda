@@ -3,7 +3,6 @@ import {
   FormLabel,
   FormErrorMessage,
   Input,
-  Select,
   Heading,
   Divider,
 } from "@chakra-ui/react";

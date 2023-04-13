@@ -52,12 +52,7 @@ export default function PostsList() {
         </Thead>
         <Tbody>
           {posts.map((post: any) => (
-            <Tr
-              key={post.id}
-              onClick={() =>
-                console.log("its me, hi, all the problem its me", post)
-              }
-            >
+            <Tr key={post.id}>
               <Td>{post.id}</Td>
               <Td>{post.title}</Td>
               <Td overflow="hidden" maxW="30ch" textOverflow="ellipsis">

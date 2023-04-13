@@ -50,7 +50,7 @@ export default function UsersList() {
         </Thead>
         <Tbody>
           {users.map((user) => (
-            <Tr>
+            <Tr key={user.id}>
               <Td>{user.id}</Td>
               <Td>{user.name}</Td>
               <Td>{getStatusBadge(user.status)}</Td>

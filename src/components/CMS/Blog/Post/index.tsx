@@ -18,14 +18,15 @@ type Article = {
   content: string;
   slug: string;
   image: string;
+  imageDescription: string;
+  imageSub: string;
 };
 
 export default function Post() {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<Article>();
 
   const onSubmit: SubmitHandler<Article> = (data) => console.log(data);
@@ -112,6 +113,32 @@ export default function Post() {
 
             <FormErrorMessage>
               {errors.image && errors.image.message}
+            </FormErrorMessage>
+          </FormControl>
+
+          <FormControl isInvalid={!!errors.imageDescription} isRequired>
+            <FormLabel htmlFor="imageDescription">
+              Descrição da Imagem
+            </FormLabel>
+
+            <Input
+              id="imageDescription"
+              type="text"
+              {...register("imageDescription")}
+            />
+
+            <FormErrorMessage>
+              {errors.imageDescription && errors.imageDescription.message}
+            </FormErrorMessage>
+          </FormControl>
+
+          <FormControl isInvalid={!!errors.imageSub} isRequired>
+            <FormLabel htmlFor="imageSub">Legenda da Imagem</FormLabel>
+
+            <Input id="imageSub" type="text" {...register("imageSub")} />
+
+            <FormErrorMessage>
+              {errors.imageSub && errors.imageSub.message}
             </FormErrorMessage>
           </FormControl>
 

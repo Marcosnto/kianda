@@ -1,3 +1,5 @@
+import Post from "@/components/CMS/Forms/Blog/Post";
+import PostsList from "@/components/CMS/Forms/Blog/PostsList";
 import UserForm from "@/components/CMS/Forms/User";
 import UsersList from "@/components/CMS/UsersList";
 import { Icon } from "@chakra-ui/react";
@@ -31,7 +33,7 @@ export const admin: userOptions = {
     {
       key: "user-admin-01",
       icon: getIcon(IoBookOutline),
-      displayName: "Cadastrar Pacientes",
+      displayName: "Cadastrar Paciente",
       render: <UserForm />,
     },
     {
@@ -46,13 +48,13 @@ export const admin: userOptions = {
       key: "blog-admin-01",
       icon: getIcon(IoDocumentTextOutline),
       displayName: "Escrever Artigo",
-      render: <div>Escrever Artigo</div>,
+      render: <Post />,
     },
     {
       key: "blog-admin-02",
       icon: getIcon(IoFolderOutline),
       displayName: "Lista de Artigos",
-      render: <div>Listar Artigos</div>,
+      render: <PostsList />,
     },
   ],
 };

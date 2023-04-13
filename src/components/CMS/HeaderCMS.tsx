@@ -3,9 +3,8 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { IconButton, useDisclosure, Box, Heading } from "@chakra-ui/react";
 import DrawnerMenu from "@/components/CMS/Drawer";
 import AvatarMenu from "@/components/CMS/AvatarMenu";
-import { admin } from "@/data/menuOptionsPermitions";
 
-export default function HeaderCMS(setCurrentComponent: any) {
+export default function HeaderCMS({ setCurrentComponent }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -31,7 +30,6 @@ export default function HeaderCMS(setCurrentComponent: any) {
       <DrawnerMenu
         onClose={onClose}
         isOpen={isOpen}
-        menuOptions={admin}
         setCurrentComponent={setCurrentComponent}
       />
       <AvatarMenu />

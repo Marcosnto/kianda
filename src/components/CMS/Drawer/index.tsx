@@ -1,6 +1,5 @@
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -10,19 +9,17 @@ import {
 } from "@chakra-ui/react";
 
 import { userOptions } from "@/data/menuOptionsPermitions";
-import MenuOptions from "../MenuOptions";
+import Menu from "../Menu";
 
 type DrawnerMenu = {
   onClose: () => void;
   isOpen: boolean;
-  menuOptions: userOptions;
   setCurrentComponent: () => void;
 };
 
 export default function DrawerMenu({
   onClose,
   isOpen,
-  menuOptions,
   setCurrentComponent,
 }: DrawnerMenu) {
   return (
@@ -44,14 +41,7 @@ export default function DrawerMenu({
           />
         </DrawerHeader>
         <DrawerBody>
-          {menuOptions.users.map((option) => (
-            <MenuOptions
-              key={option.key}
-              displayName={option.displayName}
-              icon={option.icon}
-              setCurrentComponent={setCurrentComponent}
-            />
-          ))}
+          <Menu setCurrentComponent={setCurrentComponent} onClose={onClose} />
         </DrawerBody>
       </DrawerContent>
     </Drawer>

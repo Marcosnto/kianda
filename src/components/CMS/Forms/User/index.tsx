@@ -71,44 +71,41 @@ export default function UserForm() {
       <Heading textAlign="center" mb="10" as="h1" size="xl">
         Contrato Terapêutico
       </Heading>
-      <Box
-        onSubmit={handleSubmit(onSubmit)}
-        display="flex"
-        flexDir="column"
-        gap="4"
-      >
-        <GeneralInformations
-          errors={errors}
-          register={register}
-          watch={watch}
-        />
-        <Partner errors={errors} register={register} watch={watch} />
-        <FirstEmergencyContact
-          errors={errors}
-          register={register}
-          watch={watch}
-        />
-        <SecondEmergencyContact
-          errors={errors}
-          register={register}
-          watch={watch}
-        />
-        <Stack
-          direction="row"
-          spacing={4}
-          align="center"
-          justifyContent="space-around"
-          mt="6"
-          mb="8"
-        >
-          <Button colorScheme="teal" variant="solid" type="reset">
-            Cancelar
-          </Button>
-          <Button colorScheme="teal" variant="outline" type="submit">
-            Salvar
-          </Button>
-        </Stack>
-      </Box>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Box display="flex" flexDir="column" gap="7">
+          <GeneralInformations
+            errors={errors}
+            register={register}
+            watch={watch}
+          />
+          <Partner errors={errors} register={register} watch={watch} />
+          <FirstEmergencyContact
+            errors={errors}
+            register={register}
+            watch={watch}
+          />
+          <SecondEmergencyContact
+            errors={errors}
+            register={register}
+            watch={watch}
+          />
+          <Stack
+            direction="row"
+            spacing={4}
+            align="center"
+            justifyContent="space-around"
+            mt="6"
+            mb="8"
+          >
+            <Button colorScheme="teal" variant="solid" type="reset">
+              Cancelar
+            </Button>
+            <Button colorScheme="teal" variant="outline" type="submit">
+              Salvar
+            </Button>
+          </Stack>
+        </Box>
+      </form>
     </>
   );
 }

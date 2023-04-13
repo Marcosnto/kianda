@@ -15,7 +15,6 @@ import { FormReactHooksProps } from ".";
 export default function GeneralInformations({
   errors,
   register,
-  watch,
 }: FormReactHooksProps) {
   return (
     <>

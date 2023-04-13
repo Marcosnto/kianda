@@ -8,7 +8,6 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 
-import { userOptions } from "@/data/menuOptionsPermitions";
 import Menu from "../Menu";
 
 type DrawnerMenu = {

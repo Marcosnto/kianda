@@ -1,10 +1,7 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const whereAmI = useRouter().asPath;
-
   const theme = extendTheme({
     colors: {
       red: {
@@ -36,7 +33,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ChakraProvider theme={theme}>
-      {/* {whereAmI !== '/' ? <HeadComponent /> : null} */}
       <Component {...pageProps} />
     </ChakraProvider>
   );

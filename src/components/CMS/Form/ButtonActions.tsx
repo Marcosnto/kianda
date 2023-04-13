@@ -1,5 +1,4 @@
-import { IconButton, IconButtonProps, Stack } from "@chakra-ui/react";
-import { MouseEventHandler } from "react";
+import { IconButton, Stack } from "@chakra-ui/react";
 import {
   IoArchiveOutline,
   IoCreateOutline,

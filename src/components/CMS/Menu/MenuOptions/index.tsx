@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import { Box } from "@chakra-ui/react";
 import { OptionsProps } from "@/data/menuOptionsPermitions";
 

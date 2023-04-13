@@ -1,9 +1,13 @@
 import { Divider, Flex, Heading, MenuDivider } from "@chakra-ui/react";
-import MenuOptions from "../MenuOptions";
+import MenuOptions from "./MenuOptions";
 import { admin } from "@/data/menuOptionsPermitions";
-import { ReactElement } from "react";
 
-export default function Menu({ setCurrentComponent }: any) {
+type MenuProps = {
+  setCurrentComponent: () => void;
+  onClose?: () => void;
+};
+
+export default function Menu({ setCurrentComponent, onClose }: MenuProps) {
   return (
     <Flex flexDir="column" pt="4">
       {admin.users ? (
@@ -18,6 +22,7 @@ export default function Menu({ setCurrentComponent }: any) {
           icon={option.icon}
           render={option.render}
           setCurrentComponent={setCurrentComponent}
+          onClose={onClose}
           displayName={option.displayName}
         />
       ))}
@@ -30,12 +35,13 @@ export default function Menu({ setCurrentComponent }: any) {
           </Heading>
         </>
       ) : null}
-      {admin.blog.map((option) => (
+      {admin.blog?.map((option) => (
         <MenuOptions
           key={option.key}
           icon={option.icon}
           render={option.render}
           setCurrentComponent={setCurrentComponent}
+          onClose={onClose}
           displayName={option.displayName}
         />
       ))}

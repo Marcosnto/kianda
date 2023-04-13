@@ -1,4 +1,4 @@
-import posts from "@/data/postsMocks";
+import users from "@/data/usersMock";
 
 import {
   Badge,
@@ -11,21 +11,21 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import ButtonActions from "../../ButtonActions";
+import ButtonActions from "../../Form/ButtonActions";
 
-export default function PostsList() {
+export default function UsersList() {
   function getStatusBadge(status: string) {
     let colorScheme = "";
-    let statusName = "";
 
     switch (status.toLowerCase()) {
-      case "1":
+      case "ativo":
         colorScheme = "green";
-        statusName = "Publicada";
         break;
-      case "2":
-        colorScheme = "blue";
-        statusName = "Rascunho";
+      case "cancelado":
+        colorScheme = "red";
+        break;
+      case "pausado":
+        colorScheme = "purple";
         break;
       default:
         break;
@@ -33,32 +33,28 @@ export default function PostsList() {
 
     return (
       <Badge variant="subtle" colorScheme={colorScheme}>
-        {statusName}
+        {status}
       </Badge>
     );
   }
 
   return (
     <TableContainer>
-      <Table variant="striped" size="sm" colorScheme="blue">
+      <Table variant="striped" size="sm" colorScheme="orange">
         <Thead>
           <Tr>
             <Th>ID</Th>
             <Th>Título</Th>
-            <Th>Descrição</Th>
-            <Th>Situação</Th>
+            <Th>Cadastro</Th>
             <Th>Ações</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {posts.map((post: any) => (
-            <Tr key={post.id}>
-              <Td>{post.id}</Td>
-              <Td>{post.title}</Td>
-              <Td overflow="hidden" maxW="30ch" textOverflow="ellipsis">
-                {post.description}
-              </Td>
-              <Td>{getStatusBadge(post.status)}</Td>
+          {users.map((user) => (
+            <Tr key={user.id}>
+              <Td>{user.id}</Td>
+              <Td>{user.name}</Td>
+              <Td>{getStatusBadge(user.status)}</Td>
               <Td>
                 <ButtonActions />
               </Td>

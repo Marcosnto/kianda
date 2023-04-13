@@ -1,7 +1,7 @@
-import Post from "@/components/CMS/Forms/Blog/Post";
-import PostsList from "@/components/CMS/Forms/Blog/PostsList";
-import UserForm from "@/components/CMS/Forms/User";
-import UsersList from "@/components/CMS/UsersList";
+import Post from "@/components/CMS/Blog/Post";
+import PostsList from "@/components/CMS/Blog/List";
+import UserForm from "@/components/CMS/User/TerapheuticContract";
+import UsersList from "@/components/CMS/User/List";
 import { Icon } from "@chakra-ui/react";
 import {
   IoPeopleOutline,

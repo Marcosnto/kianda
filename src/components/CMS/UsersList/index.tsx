@@ -3,7 +3,6 @@ import users from "@/data/usersMock";
 import {
   Badge,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
@@ -43,14 +42,16 @@ export default function UsersList() {
       <Table variant="striped" size="sm" colorScheme="blue">
         <Thead>
           <Tr>
-            <Th>Nome</Th>
-            <Th>Situação</Th>
+            <Th>ID</Th>
+            <Th>Título</Th>
+            <Th>Cadastro</Th>
             <Th>Ações</Th>
           </Tr>
         </Thead>
         <Tbody>
           {users.map((user) => (
             <Tr>
+              <Td>{user.id}</Td>
               <Td>{user.name}</Td>
               <Td>{getStatusBadge(user.status)}</Td>
               <Td>Botoes</Td>
@@ -59,6 +60,7 @@ export default function UsersList() {
         </Tbody>
         <Tfoot>
           <Tr>
+            <Th>ID</Th>
             <Th>Nome</Th>
             <Th>Situação</Th>
             <Th>Ações</Th>

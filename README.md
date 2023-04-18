@@ -1,11 +1,10 @@
 # Tornar-se Negro!  
 
-Put here a description...
+Tornar-se Negro is a phycologist  platform that consist in a website that will share articles and professional information about the phycologist Adelmo Filho. This platform will have too an interface for the phycologist to get information about yours patients and also these patients about their consults.
 
 <h3>Motivation</h3>
 
-Put here a description
-
+The principal motivation to this project is to put in practice some knowledge frontend techs that I know/want to learn.
 ## Languages
 
 <ul>

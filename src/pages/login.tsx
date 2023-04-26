@@ -26,9 +26,25 @@ export default function Login() {
     formState: { errors },
   } = useForm<LoginProps>();
 
+  function login(data: LoginProps) {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: data.email, password: data.password }),
+    };
+
+    fetch(process.env.NEXT_PUBLIC_JWT_URL || "", options)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        if (response.token) {
+          router.push("/admin");
+        }
+      });
+  }
+
   const onSubmit: SubmitHandler<LoginProps> = (data) => {
-    console.log(data);
-    router.push("/admin");
+    login(data);
   };
 
   return (

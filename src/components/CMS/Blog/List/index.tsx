@@ -12,18 +12,37 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import ButtonActions from "../../Form/ButtonActions";
+import { useEffect, useState } from "react";
+
+type Article = {
+  id: number;
+  title: string;
+  author: string;
+  description: string;
+  content: string;
+  status: string;
+  image: any;
+  imageDescription: string;
+  imageSub: string;
+};
 
 export default function PostsList() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    get();
+  }, []);
+
   function getStatusBadge(status: string) {
     let colorScheme = "";
     let statusName = "";
 
     switch (status.toLowerCase()) {
-      case "1":
+      case "publish":
         colorScheme = "green";
         statusName = "Publicada";
         break;
-      case "2":
+      case "draft":
         colorScheme = "blue";
         statusName = "Rascunho";
         break;
@@ -36,6 +55,18 @@ export default function PostsList() {
         {statusName}
       </Badge>
     );
+  }
+
+  function get(data: Article) {
+    fetch(process.env.NEXT_PUBLIC_BASE_URL + "/articles" || "", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      console.log(response.headers.get("X-Total-Count"));
+      response.json().then((response) => setPosts(response));
+    });
   }
 
   return (
@@ -51,7 +82,7 @@ export default function PostsList() {
           </Tr>
         </Thead>
         <Tbody>
-          {posts.map((post: any) => (
+          {posts?.map((post: Article) => (
             <Tr key={post.id}>
               <Td>{post.id}</Td>
               <Td>{post.title}</Td>

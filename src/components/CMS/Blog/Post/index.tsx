@@ -17,7 +17,7 @@ type Article = {
   description: string;
   content: string;
   slug: string;
-  image: string;
+  image: any;
   imageDescription: string;
   imageSub: string;
 };
@@ -29,7 +29,29 @@ export default function Post() {
     formState: { errors },
   } = useForm<Article>();
 
-  const onSubmit: SubmitHandler<Article> = (data) => console.log(data);
+  function post(data: Article) {
+    console.log(data.image[0]);
+    fetch(process.env.NEXT_PUBLIC_BASE_URL + "/article" || "", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: data.title,
+        author: data.author,
+        description: data.description,
+        content: data.content,
+        slug: data.slug,
+        files: data.image[0],
+        imageDescription: data.imageDescription,
+        imageSub: data.imageSub,
+      }),
+    }).then((response) => {
+      console.log(response);
+    });
+  }
+
+  const onSubmit: SubmitHandler<Article> = (data) => post(data);
 
   return (
     <>

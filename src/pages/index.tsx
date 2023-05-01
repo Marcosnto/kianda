@@ -1,7 +1,16 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+
 import Head from "next/head";
 import { Center } from "@chakra-ui/react";
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/login");
+  }, []);
+
   return (
     <>
       <Head>

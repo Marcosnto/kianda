@@ -1,11 +1,24 @@
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
+
 import Content from "@/components/CMS/Content";
 import HeaderCMS from "@/components/CMS/HeaderCMS";
 import Menu from "@/components/CMS/Menu";
 import { Grid, GridItem } from "@chakra-ui/react";
-import { useState } from "react";
 
 export default function Admin() {
   const [currentComponent, setCurrentComponent] = useState(<div>Teste</div>);
+  const [cookie] = useCookies(["token"]);
+  const router = useRouter();
+
+  const hasCookie = Object.keys(cookie).length === 0;
+
+  useEffect(() => {
+    if (hasCookie) {
+      router.push("/login");
+    }
+  }, []);
 
   return (
     <Grid

@@ -1,5 +1,6 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
+import { CookiesProvider } from "react-cookie";
 
 export default function App({ Component, pageProps }: AppProps) {
   const theme = extendTheme({
@@ -33,7 +34,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <CookiesProvider>
+        <Component {...pageProps} />
+      </CookiesProvider>
     </ChakraProvider>
   );
 }

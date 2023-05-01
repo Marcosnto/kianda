@@ -1,6 +1,8 @@
+import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
+
 import { AddIcon, ArrowForwardIcon, LockIcon } from "@chakra-ui/icons";
 import { Avatar, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
 type AvatarMenuProps = {
   icon: React.ReactElement;
@@ -10,6 +12,7 @@ type AvatarMenuProps = {
 
 export default function AvatarMenu() {
   const router = useRouter();
+  const [, , removeCookie] = useCookies(["token"]);
 
   function MenuItemComponent({ icon, content, onClick }: AvatarMenuProps) {
     return (
@@ -17,6 +20,11 @@ export default function AvatarMenu() {
         {content}
       </MenuItem>
     );
+  }
+
+  function logout() {
+    removeCookie("token");
+    router.push("/login");
   }
 
   return (
@@ -42,7 +50,7 @@ export default function AvatarMenu() {
           {MenuItemComponent({
             icon: <ArrowForwardIcon />,
             content: "Sair",
-            onClick: () => router.push("/login"),
+            onClick: () => logout(),
           })}
         </MenuList>
       </Menu>

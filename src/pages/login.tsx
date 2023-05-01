@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useCookies } from "react-cookie";
 
 type LoginProps = {
   email: string;
@@ -19,6 +20,7 @@ type LoginProps = {
 };
 
 export default function Login() {
+  const [, setCookie] = useCookies(["token"]);
   const router = useRouter();
   const {
     register,
@@ -27,20 +29,16 @@ export default function Login() {
   } = useForm<LoginProps>();
 
   function login(data: LoginProps) {
-    const options = {
+    fetch(process.env.NEXT_PUBLIC_JWT_URL || "", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ username: data.email, password: data.password }),
-    };
-
-    fetch(process.env.NEXT_PUBLIC_JWT_URL || "", options)
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
-        if (response.token) {
-          router.push("/admin");
-        }
-      });
+    }).then((response) => {
+      response.json().then((response) => setCookie("token", response.token));
+      router.push("/admin");
+    });
   }
 
   const onSubmit: SubmitHandler<LoginProps> = (data) => {

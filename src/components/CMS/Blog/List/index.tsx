@@ -1,18 +1,17 @@
-import posts from "@/data/postsMocks";
-
 import {
   Badge,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Tfoot,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
 import ButtonActions from "../../Form/ButtonActions";
 import { useEffect, useState } from "react";
+import Pagination from "../../Pagination";
+import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
 
 type Article = {
   id: number;
@@ -28,10 +27,13 @@ type Article = {
 
 export default function PostsList() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     get();
-  }, []);
+  }, [currentPage]);
 
   function getStatusBadge(status: string) {
     let colorScheme = "";
@@ -57,54 +59,69 @@ export default function PostsList() {
     );
   }
 
-  function get(data: Article) {
-    fetch(process.env.NEXT_PUBLIC_BASE_URL + "/articles" || "", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
-      console.log(response.headers.get("X-Total-Count"));
+  function setNumberOfPages(totalPageFromResponse: string | null) {
+    if (totalPageFromResponse) {
+      const totalPages = Math.ceil(+totalPageFromResponse / 5);
+      setTotalPages(totalPages);
+    }
+  }
+
+  function get() {
+    setLoading(true);
+    fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + `/articles?_page=${currentPage}` || "",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((response) => {
+      setNumberOfPages(response.headers.get("X-Total-Count"));
       response.json().then((response) => setPosts(response));
+      setLoading(false);
     });
   }
 
+  if (loading) {
+    return <ArticleSkeleton />;
+  }
+
   return (
-    <TableContainer>
-      <Table variant="striped" size="sm" colorScheme="orange">
-        <Thead>
-          <Tr>
-            <Th>ID</Th>
-            <Th>Título</Th>
-            <Th>Descrição</Th>
-            <Th>Situação</Th>
-            <Th>Ações</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {posts?.map((post: Article) => (
-            <Tr key={post.id}>
-              <Td>{post.id}</Td>
-              <Td>{post.title}</Td>
-              <Td overflow="hidden" maxW="30ch" textOverflow="ellipsis">
-                {post.description}
-              </Td>
-              <Td>{getStatusBadge(post.status)}</Td>
-              <Td>
-                <ButtonActions />
-              </Td>
+    <>
+      <TableContainer>
+        <Table variant="striped" size="sm" colorScheme="orange">
+          <Thead>
+            <Tr>
+              <Th>ID</Th>
+              <Th>Título</Th>
+              <Th>Descrição</Th>
+              <Th>Situação</Th>
+              <Th>Ações</Th>
             </Tr>
-          ))}
-        </Tbody>
-        <Tfoot>
-          <Tr>
-            <Th>ID</Th>
-            <Th>Nome</Th>
-            <Th>Situação</Th>
-            <Th>Ações</Th>
-          </Tr>
-        </Tfoot>
-      </Table>
-    </TableContainer>
+          </Thead>
+          <Tbody>
+            {posts?.map((post: Article) => (
+              <Tr key={post.id}>
+                <Td>{post.id}</Td>
+                <Td>{post.title}</Td>
+                <Td overflow="hidden" maxW="30ch" textOverflow="ellipsis">
+                  {post.description}
+                </Td>
+                <Td>{getStatusBadge(post.status)}</Td>
+                <Td>
+                  <ButtonActions />
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+    </>
   );
 }

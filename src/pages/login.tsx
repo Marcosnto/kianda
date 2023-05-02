@@ -35,10 +35,16 @@ export default function Login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username: data.email, password: data.password }),
-    }).then((response) => {
-      response.json().then((response) => setCookie("token", response.token));
-      router.push("/admin");
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          response
+            .json()
+            .then((response) => setCookie("token", response.token));
+          router.push("/admin");
+        }
+      })
+      .catch((error) => console.log(error));
   }
 
   const onSubmit: SubmitHandler<LoginProps> = (data) => {

@@ -12,10 +12,10 @@ export default function Admin() {
   const [cookie] = useCookies(["token"]);
   const router = useRouter();
 
-  const hasCookie = Object.keys(cookie).length === 0;
-
+  const isAuth = "token" in cookie;
+  console.log("token" in cookie);
   useEffect(() => {
-    if (hasCookie) {
+    if (!isAuth) {
       router.push("/login");
     }
   }, []);

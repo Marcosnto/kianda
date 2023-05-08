@@ -13,7 +13,7 @@ export default function Admin() {
   const router = useRouter();
 
   const isAuth = "token" in cookie;
-  console.log("token" in cookie);
+
   useEffect(() => {
     if (!isAuth) {
       router.push("/login");
@@ -53,7 +53,7 @@ export default function Admin() {
         "0.6fr 3fr",
       ]}
     >
-      <GridItem area={"header"} background={"yellow.800"} color="#FFF">
+      <GridItem area={"header"} background={"green.900"} color="#FFF">
         <HeaderCMS setCurrentComponent={setCurrentComponent} />
       </GridItem>
 
@@ -71,7 +71,7 @@ export default function Admin() {
 
       <GridItem
         area={"footer"}
-        background="yellow.800"
+        background="green.900"
         color="#FFF"
         textAlign="center"
       >

@@ -71,6 +71,7 @@ export default function Post() {
                 {...register("title", {
                   required: "Esse Campo é obrigatório",
                 })}
+                focusBorderColor="green.800"
               />
 
               <FormErrorMessage>
@@ -87,6 +88,7 @@ export default function Post() {
                 {...register("author", {
                   required: "Esse Campo é obrigatório",
                 })}
+                focusBorderColor="green.800"
               />
 
               <FormErrorMessage>
@@ -105,6 +107,7 @@ export default function Post() {
                 {...register("description", {
                   required: "Esse Campo é obrigatório",
                 })}
+                focusBorderColor="green.800"
               />
 
               <FormErrorMessage>
@@ -112,15 +115,21 @@ export default function Post() {
               </FormErrorMessage>
             </FormControl>
 
-            <FormControl isInvalid={!!errors.slug}>
+            {/* <FormControl isInvalid={!!errors.slug}>
               <FormLabel htmlFor="slug">Slug</FormLabel>
 
-              <Input id="slug" type="text" isDisabled {...register("slug")} />
+              <Input
+                id="slug"
+                type="text"
+                isDisabled
+                {...register("slug")}
+                focusBorderColor="green.800"
+              />
 
               <FormErrorMessage>
                 {errors.slug && errors.slug.message}
               </FormErrorMessage>
-            </FormControl>
+            </FormControl> */}
           </Stack>
 
           <FormControl isInvalid={!!errors.image}>
@@ -131,6 +140,7 @@ export default function Post() {
               type="file"
               {...register("image")}
               variant="flushed"
+              focusBorderColor="green.800"
             />
 
             <FormErrorMessage>
@@ -147,6 +157,7 @@ export default function Post() {
               id="imageDescription"
               type="text"
               {...register("imageDescription")}
+              focusBorderColor="green.800"
             />
 
             <FormErrorMessage>
@@ -157,7 +168,12 @@ export default function Post() {
           <FormControl isInvalid={!!errors.imageSub} isRequired>
             <FormLabel htmlFor="imageSub">Legenda da Imagem</FormLabel>
 
-            <Input id="imageSub" type="text" {...register("imageSub")} />
+            <Input
+              id="imageSub"
+              type="text"
+              {...register("imageSub")}
+              focusBorderColor="green.800"
+            />
 
             <FormErrorMessage>
               {errors.imageSub && errors.imageSub.message}
@@ -173,6 +189,7 @@ export default function Post() {
               {...register("content", {
                 required: "Esse Campo é obrigatório",
               })}
+              focusBorderColor="green.800"
             />
 
             <FormErrorMessage>
@@ -188,10 +205,10 @@ export default function Post() {
             mt="6"
             mb="8"
           >
-            <Button colorScheme="teal" variant="solid" type="reset">
+            <Button colorScheme="green" variant="outline" type="reset">
               Cancelar
             </Button>
-            <Button colorScheme="teal" variant="outline" type="submit">
+            <Button colorScheme="green" variant="solid" type="submit">
               Salvar
             </Button>
           </Stack>

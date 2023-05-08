@@ -97,10 +97,10 @@ export default function UserForm() {
             mt="6"
             mb="8"
           >
-            <Button colorScheme="teal" variant="solid" type="reset">
+            <Button colorScheme="green" variant="outline" type="reset">
               Cancelar
             </Button>
-            <Button colorScheme="teal" variant="outline" type="submit">
+            <Button colorScheme="green" variant="solid" type="submit">
               Salvar
             </Button>
           </Stack>

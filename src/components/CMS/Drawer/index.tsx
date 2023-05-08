@@ -33,6 +33,7 @@ export default function DrawerMenu({
         >
           Painel
           <IconButton
+            _hover={{ bg: "green.600", color: "white" }}
             aria-label="Fechar menu lateral"
             icon={<SmallCloseIcon />}
             onClick={() => onClose()}

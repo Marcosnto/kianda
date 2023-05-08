@@ -30,6 +30,7 @@ export default function FirstEmergencyContact({
           {...register("firstEmergencyContact.fullName", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.firstEmergencyContact?.fullName &&
@@ -45,6 +46,7 @@ export default function FirstEmergencyContact({
           {...register("firstEmergencyContact.address", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.firstEmergencyContact?.address &&
@@ -62,6 +64,7 @@ export default function FirstEmergencyContact({
           {...register("firstEmergencyContact.contact", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.firstEmergencyContact?.contact &&
@@ -77,6 +80,7 @@ export default function FirstEmergencyContact({
           {...register("firstEmergencyContact.email", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.firstEmergencyContact?.email &&

@@ -11,7 +11,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import ButtonActions from "../../Form/ButtonActions";
+import ButtonActions from "../../Form/ActionsButtons";
 
 export default function UsersList() {
   function getStatusBadge(status: string) {
@@ -19,13 +19,13 @@ export default function UsersList() {
 
     switch (status.toLowerCase()) {
       case "ativo":
-        colorScheme = "green";
+        colorScheme = "blue";
         break;
       case "cancelado":
         colorScheme = "red";
         break;
       case "pausado":
-        colorScheme = "purple";
+        colorScheme = "orange";
         break;
       default:
         break;
@@ -40,7 +40,7 @@ export default function UsersList() {
 
   return (
     <TableContainer>
-      <Table variant="striped" size="sm" colorScheme="orange">
+      <Table variant="striped" size="sm" colorScheme="green">
         <Thead>
           <Tr>
             <Th>ID</Th>

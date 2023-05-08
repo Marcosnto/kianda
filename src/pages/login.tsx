@@ -52,18 +52,18 @@ export default function Login() {
   };
 
   return (
-    <Box background="orange.900" h="100vh">
+    <Box background="green.900" h="100vh">
       <Center h="80vh" flexDirection="column" gap="6">
         <Avatar size="xl" name="Tornar-se Negro" src="/img/logo.png" />
-        <Heading color="#FFFF" size="md">
+        <Heading color="#FFF" size="md">
           Torna-se Negro - Entrar
         </Heading>
         <form
           onSubmit={handleSubmit(onSubmit)}
           style={{
-            background: "#FCEEE9",
+            background: "#FFF",
             padding: "2rem",
-            border: "1px solid #863613",
+            border: "1px solid #1A240F",
             borderRadius: "6px",
           }}
         >
@@ -77,6 +77,7 @@ export default function Login() {
                 {...register("email", {
                   required: "Esse Campo é obrigatório",
                 })}
+                focusBorderColor="green.900"
               />
 
               <FormErrorMessage>
@@ -93,6 +94,7 @@ export default function Login() {
                 {...register("password", {
                   required: "Esse Campo é obrigatório",
                 })}
+                focusBorderColor="green.800"
               />
 
               <FormErrorMessage>
@@ -100,14 +102,24 @@ export default function Login() {
               </FormErrorMessage>
             </FormControl>
           </Flex>
-          <Button
-            colorScheme="teal"
-            variant="outline"
-            type="submit"
-            width="100%"
-          >
-            Entrar
-          </Button>
+          <Flex flexDir="column" gap="3">
+            <Button
+              colorScheme="green"
+              variant="solid"
+              type="submit"
+              width="100%"
+            >
+              Entrar
+            </Button>
+            <Button
+              colorScheme="green"
+              variant="outline"
+              type="submit"
+              width="100%"
+            >
+              Registra-se
+            </Button>
+          </Flex>
         </form>
       </Center>
     </Box>

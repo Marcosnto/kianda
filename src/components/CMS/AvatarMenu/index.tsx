@@ -16,7 +16,12 @@ export default function AvatarMenu() {
 
   function MenuItemComponent({ icon, content, onClick }: AvatarMenuProps) {
     return (
-      <MenuItem _hover={{ bg: "orange.50" }} icon={icon} onClick={onClick}>
+      <MenuItem
+        _hover={{ bg: "green.600", rounded: "8px", color: "white" }}
+        icon={icon}
+        onClick={onClick}
+        mt="1"
+      >
         {content}
       </MenuItem>
     );
@@ -41,7 +46,7 @@ export default function AvatarMenu() {
           }
           variant="outline"
         />
-        <MenuList sx={{ color: "black" }}>
+        <MenuList sx={{ color: "black", padding: "2" }}>
           {MenuItemComponent({ icon: <AddIcon />, content: "Ver Perfil" })}
           {MenuItemComponent({
             icon: <LockIcon />,

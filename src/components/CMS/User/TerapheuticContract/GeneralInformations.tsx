@@ -31,6 +31,7 @@ export default function GeneralInformations({
           {...register("fullName", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
 
         <FormErrorMessage>
@@ -46,6 +47,7 @@ export default function GeneralInformations({
           {...register("bornDate", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
 
         <FormErrorMessage>
@@ -61,6 +63,7 @@ export default function GeneralInformations({
           {...register("rg", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>{errors.rg && errors.rg.message}</FormErrorMessage>
       </FormControl>
@@ -73,6 +76,7 @@ export default function GeneralInformations({
           {...register("cpf", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>{errors.cpf && errors.cpf.message}</FormErrorMessage>
       </FormControl>
@@ -85,6 +89,7 @@ export default function GeneralInformations({
           {...register("ethnicity", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.ethnicity && errors.ethnicity.message}
@@ -93,7 +98,7 @@ export default function GeneralInformations({
 
       <FormControl isInvalid={!!errors.gender} isRequired>
         <FormLabel htmlFor="gender">Gênero</FormLabel>
-        <RadioGroup id="gender">
+        <RadioGroup id="gender" colorScheme="green">
           <Stack direction="row">
             <Radio
               value="1"
@@ -132,7 +137,7 @@ export default function GeneralInformations({
         <FormLabel htmlFor="disabledPerson">
           É uma pessoa com deficiência?
         </FormLabel>
-        <RadioGroup id="disabledPerson">
+        <RadioGroup id="disabledPerson" colorScheme="green">
           <Stack direction="row">
             <Radio
               value="1"
@@ -163,7 +168,7 @@ export default function GeneralInformations({
         <FormLabel htmlFor="needSuitability">
           Precisa de adequações quanto a infraestrutura online?
         </FormLabel>
-        <RadioGroup id="needSuitability">
+        <RadioGroup id="needSuitability" colorScheme="green">
           <Stack direction="row">
             <Radio
               value="1"
@@ -198,6 +203,7 @@ export default function GeneralInformations({
           {...register("religion", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.religion && errors.religion.message}
@@ -212,6 +218,7 @@ export default function GeneralInformations({
           {...register("schooling", {
             required: "Esse Campo é obrigatório",
           })}
+          colorScheme="green"
         >
           <option value="option1">Option 1</option>
           <option value="option2">Option 2</option>
@@ -230,6 +237,7 @@ export default function GeneralInformations({
           {...register("profession", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.profession && errors.profession.message}
@@ -244,6 +252,7 @@ export default function GeneralInformations({
           {...register("address", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.address && errors.address.message}
@@ -258,6 +267,7 @@ export default function GeneralInformations({
           {...register("email", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.email && errors.email.message}
@@ -266,7 +276,7 @@ export default function GeneralInformations({
 
       <FormControl isInvalid={!!errors.childrens} isRequired>
         <FormLabel htmlFor="childrens">Filho/a/e(s)</FormLabel>
-        <RadioGroup id="childrens">
+        <RadioGroup id="childrens" colorScheme="green">
           <Stack direction="row">
             <Radio
               value="1"
@@ -301,6 +311,7 @@ export default function GeneralInformations({
           {...register("civilStatus", {
             required: "Esse Campo é obrigatório",
           })}
+          focusBorderColor="green.800"
         />
         <FormErrorMessage>
           {errors.civilStatus && errors.civilStatus.message}

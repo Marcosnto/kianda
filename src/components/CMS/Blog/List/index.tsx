@@ -8,7 +8,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import ButtonActions from "../../Form/ButtonActions";
+import ButtonActions from "../../Form/ActionsButtons";
 import { useEffect, useState } from "react";
 import Pagination from "../../Pagination";
 import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
@@ -41,11 +41,11 @@ export default function PostsList() {
 
     switch (status.toLowerCase()) {
       case "publish":
-        colorScheme = "green";
+        colorScheme = "blue";
         statusName = "Publicada";
         break;
       case "draft":
-        colorScheme = "blue";
+        colorScheme = "gray";
         statusName = "Rascunho";
         break;
       default:
@@ -90,7 +90,7 @@ export default function PostsList() {
   return (
     <>
       <TableContainer>
-        <Table variant="striped" size="sm" colorScheme="orange">
+        <Table variant="striped" size="sm" colorScheme="green">
           <Thead>
             <Tr>
               <Th>ID</Th>

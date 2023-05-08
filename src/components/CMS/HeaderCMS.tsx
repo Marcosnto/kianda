@@ -22,6 +22,7 @@ export default function HeaderCMS({ setCurrentComponent }: any) {
         variant="outline"
         onClick={() => onOpen()}
         display={["unset", "unset", "none"]}
+        _hover={{ bg: "green.700" }}
       />
       <Heading as="h1" size="md" noOfLines={1}>
         Tornar-se Negro

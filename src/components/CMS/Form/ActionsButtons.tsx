@@ -20,6 +20,8 @@ export default function ButtonActions() {
         aria-label={ariaLabel}
         icon={icon}
         onClick={onClick}
+        border="solid 1px #35481E"
+        _hover={{ bg: "green.600", rounded: "8px", color: "white" }}
       />
     );
   }

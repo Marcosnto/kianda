@@ -1,3 +1,10 @@
+import UserRegister from "@/components/CMS/User/Register";
+import { Box } from "@chakra-ui/react";
+
 export default function Register() {
-  return <div>This is a register</div>;
+  return (
+    <Box background="green.900">
+      <UserRegister />
+    </Box>
+  );
 }

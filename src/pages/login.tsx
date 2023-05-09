@@ -56,7 +56,7 @@ export default function Login() {
       <Center h="80vh" flexDirection="column" gap="6">
         <Avatar size="xl" name="Tornar-se Negro" src="/img/logo.png" />
         <Heading color="#FFF" size="md">
-          Torna-se Negro - Entrar
+          Torna-se Negro
         </Heading>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -116,6 +116,7 @@ export default function Login() {
               variant="outline"
               type="submit"
               width="100%"
+              onClick={() => router.push("/register")}
             >
               Registra-se
             </Button>

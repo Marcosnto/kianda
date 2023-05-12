@@ -8,7 +8,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/login");
+    setTimeout(() => router.push("/login"), 5000);
   }, []);
 
   return (
@@ -22,9 +22,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main style={{ background: "#28100B" }}>
-        <Center h="100vh" w="100%" color="#FFFF">
-          <h1>Em construção!</h1>
+      <main style={{ background: "#1A240F" }}>
+        <Center h="100vh" w="100%" color="#FFFF" textAlign="center">
+          <p>
+            Estamos trabalhando nesta página!
+            <br />
+            Em alguns segundos você será redirecionado para página de login :)
+          </p>
         </Center>
       </main>
     </>

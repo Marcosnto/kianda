@@ -25,7 +25,7 @@ export default function HeaderCMS({ setCurrentComponent }: any) {
         _hover={{ bg: "green.700" }}
       />
       <Heading as="h1" size="md" noOfLines={1}>
-        Tornar-se Negro
+        Kianda
       </Heading>
       <DrawnerMenu
         onClose={onClose}

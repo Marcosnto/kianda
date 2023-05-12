@@ -8,7 +8,11 @@ type LogoImage = {
 function LogoImage({ pathRedirect }: LogoImage) {
   return (
     <Link href={pathRedirect}>
-      <Avatar size="xl" name="Tornar-se Negro" src="/img/logo.png" />
+      <Avatar
+        size="xl"
+        name="Logotipo: kianda escrito com fundo transparente"
+        src="/img/logo.png"
+      />
     </Link>
   );
 }

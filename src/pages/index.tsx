@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Tornar-se Negro</title>
+        <title>Kianda</title>
         <meta
           name="description"
           content="Site de divulgação de artigos e publicação da área de psicologia"

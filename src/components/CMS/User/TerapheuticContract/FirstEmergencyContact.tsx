@@ -7,6 +7,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { FormReactHooksProps } from ".";
+import RequiredInput from "../../Form/RequiredInput";
 
 export default function FirstEmergencyContact({
   errors,
@@ -19,11 +20,10 @@ export default function FirstEmergencyContact({
       </Heading>
       <Divider />
 
-      <FormControl
-        isInvalid={!!errors.firstEmergencyContact?.fullName}
-        isRequired
-      >
-        <FormLabel id="firstEmergencyContactFullName">Nome Completo</FormLabel>
+      <FormControl isInvalid={!!errors.firstEmergencyContact?.fullName}>
+        <FormLabel id="firstEmergencyContactFullName">
+          Nome Completo <RequiredInput />
+        </FormLabel>
         <Input
           id="firstEmergencyContactFullName"
           type="text"
@@ -39,7 +39,9 @@ export default function FirstEmergencyContact({
       </FormControl>
 
       <FormControl isInvalid={!!errors.firstEmergencyContact?.address}>
-        <FormLabel htmlFor="firstEmergencyContactAddress">Endereço</FormLabel>
+        <FormLabel htmlFor="firstEmergencyContactAddress">
+          Endereço <RequiredInput />
+        </FormLabel>
         <Input
           id="firstEmergencyContactAddress"
           type="text"
@@ -56,7 +58,7 @@ export default function FirstEmergencyContact({
 
       <FormControl isInvalid={!!errors.firstEmergencyContact?.contact}>
         <FormLabel htmlFor="firstEmergencyContactContact">
-          Telefone de contato
+          Telefone de contato <RequiredInput />
         </FormLabel>
         <Input
           id="firstEmergencyContactContact"
@@ -73,7 +75,9 @@ export default function FirstEmergencyContact({
       </FormControl>
 
       <FormControl isInvalid={!!errors.firstEmergencyContact?.email}>
-        <FormLabel htmlFor="firstEmergencyContactEmail">E-mail</FormLabel>
+        <FormLabel htmlFor="firstEmergencyContactEmail">
+          E-mail <RequiredInput />
+        </FormLabel>
         <Input
           id="firstEmergencyContactEmail"
           type="email"

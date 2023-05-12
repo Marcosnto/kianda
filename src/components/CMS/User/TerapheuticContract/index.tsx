@@ -9,7 +9,7 @@ import {
 import GeneralInformations from "./GeneralInformations";
 import Partner from "./Partner";
 import { Box, Button, Heading, Stack } from "@chakra-ui/react";
-import FirstEmergencyContact from "./FirstEmergencyContact copy";
+import FirstEmergencyContact from "./FirstEmergencyContact";
 import SecondEmergencyContact from "./SecondEmergencyContact";
 
 type SpouseProps = {

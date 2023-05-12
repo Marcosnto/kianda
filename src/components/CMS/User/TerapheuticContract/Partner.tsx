@@ -16,7 +16,7 @@ export default function Partner({ errors, register }: FormReactHooksProps) {
         Em caso de Cônjuge
       </Heading>
       <Divider />
-      <FormControl isInvalid={!!errors.spouse?.fullName} isRequired>
+      <FormControl isInvalid={!!errors.spouse?.fullName}>
         <FormLabel id="spouseFullName">Nome Completo</FormLabel>
         <Input
           id="spouseFullName"
@@ -30,7 +30,7 @@ export default function Partner({ errors, register }: FormReactHooksProps) {
         </FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.spouse?.bornDate} isRequired>
+      <FormControl isInvalid={!!errors.spouse?.bornDate}>
         <FormLabel htmlFor="spouseBornDate">Data de Nascimento</FormLabel>
         <Input
           id="spouseBornDate"

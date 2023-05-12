@@ -11,6 +11,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { FormReactHooksProps } from ".";
+import RequiredInput from "../../Form/RequiredInput";
 
 export default function GeneralInformations({
   errors,
@@ -22,8 +23,10 @@ export default function GeneralInformations({
         Informações Gerais
       </Heading>
       <Divider />
-      <FormControl isInvalid={!!errors.fullName} isRequired>
-        <FormLabel htmlFor="fullName">Nome Completo</FormLabel>
+      <FormControl isInvalid={!!errors.fullName}>
+        <FormLabel htmlFor="fullName">
+          Nome Completo <RequiredInput />
+        </FormLabel>
 
         <Input
           id="fullName"
@@ -39,8 +42,10 @@ export default function GeneralInformations({
         </FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.bornDate} isRequired>
-        <FormLabel htmlFor="bornDate">Data de Nascimento</FormLabel>
+      <FormControl isInvalid={!!errors.bornDate}>
+        <FormLabel htmlFor="bornDate">
+          Data de Nascimento <RequiredInput />
+        </FormLabel>
         <Input
           id="bornDate"
           type="date"
@@ -55,8 +60,10 @@ export default function GeneralInformations({
         </FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.rg} isRequired>
-        <FormLabel htmlFor="rg">RG</FormLabel>
+      <FormControl isInvalid={!!errors.rg}>
+        <FormLabel htmlFor="rg">
+          RG <RequiredInput />
+        </FormLabel>
         <Input
           id="rg"
           type="number"
@@ -68,8 +75,10 @@ export default function GeneralInformations({
         <FormErrorMessage>{errors.rg && errors.rg.message}</FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.cpf} isRequired>
-        <FormLabel htmlFor="cpf">CPF</FormLabel>
+      <FormControl isInvalid={!!errors.cpf}>
+        <FormLabel htmlFor="cpf">
+          CPF <RequiredInput />
+        </FormLabel>
         <Input
           id="cpf"
           type="number"
@@ -81,8 +90,10 @@ export default function GeneralInformations({
         <FormErrorMessage>{errors.cpf && errors.cpf.message}</FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.ethnicity} isRequired>
-        <FormLabel htmlFor="ethnicity">Cor ou Raça/Etnia</FormLabel>
+      <FormControl isInvalid={!!errors.ethnicity}>
+        <FormLabel htmlFor="ethnicity">
+          Cor ou Raça/Etnia <RequiredInput />
+        </FormLabel>
         <Input
           id="ethnicity"
           type="text"
@@ -96,8 +107,10 @@ export default function GeneralInformations({
         </FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.gender} isRequired>
-        <FormLabel htmlFor="gender">Gênero</FormLabel>
+      <FormControl isInvalid={!!errors.gender}>
+        <FormLabel htmlFor="gender">
+          Gênero <RequiredInput />
+        </FormLabel>
         <RadioGroup id="gender" colorScheme="green">
           <Stack direction="row">
             <Radio
@@ -133,9 +146,9 @@ export default function GeneralInformations({
         </FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.disabledPerson} isRequired>
+      <FormControl isInvalid={!!errors.disabledPerson}>
         <FormLabel htmlFor="disabledPerson">
-          É uma pessoa com deficiência?
+          É uma pessoa com deficiência? <RequiredInput />
         </FormLabel>
         <RadioGroup id="disabledPerson" colorScheme="green">
           <Stack direction="row">
@@ -164,9 +177,10 @@ export default function GeneralInformations({
         </FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.needSuitability} isRequired>
+      <FormControl isInvalid={!!errors.needSuitability}>
         <FormLabel htmlFor="needSuitability">
-          Precisa de adequações quanto a infraestrutura online?
+          Precisa de adequações quanto a infraestrutura online?{" "}
+          <RequiredInput />
         </FormLabel>
         <RadioGroup id="needSuitability" colorScheme="green">
           <Stack direction="row">
@@ -196,7 +210,9 @@ export default function GeneralInformations({
       </FormControl>
 
       <FormControl isInvalid={!!errors.religion}>
-        <FormLabel htmlFor="religion">Religião</FormLabel>
+        <FormLabel htmlFor="religion">
+          Religião <RequiredInput />
+        </FormLabel>
         <Input
           id="religion"
           type="text"
@@ -211,7 +227,9 @@ export default function GeneralInformations({
       </FormControl>
 
       <FormControl isInvalid={!!errors.schooling}>
-        <FormLabel htmlFor="schooling">Escolaridade</FormLabel>
+        <FormLabel htmlFor="schooling">
+          Escolaridade <RequiredInput />
+        </FormLabel>
         <Select
           id="schooling"
           placeholder="Select option"
@@ -230,7 +248,9 @@ export default function GeneralInformations({
       </FormControl>
 
       <FormControl isInvalid={!!errors.profession}>
-        <FormLabel htmlFor="profession">Profissão</FormLabel>
+        <FormLabel htmlFor="profession">
+          Profissão <RequiredInput />
+        </FormLabel>
         <Input
           id="profession"
           type="text"
@@ -245,7 +265,9 @@ export default function GeneralInformations({
       </FormControl>
 
       <FormControl isInvalid={!!errors.address}>
-        <FormLabel htmlFor="address">Telefone de contato</FormLabel>
+        <FormLabel htmlFor="address">
+          Telefone de contato <RequiredInput />
+        </FormLabel>
         <Input
           id="address"
           type="number"
@@ -260,7 +282,9 @@ export default function GeneralInformations({
       </FormControl>
 
       <FormControl isInvalid={!!errors.email}>
-        <FormLabel htmlFor="email">E-mail</FormLabel>
+        <FormLabel htmlFor="email">
+          E-mail <RequiredInput />
+        </FormLabel>
         <Input
           id="email"
           type="email"
@@ -274,8 +298,10 @@ export default function GeneralInformations({
         </FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={!!errors.childrens} isRequired>
-        <FormLabel htmlFor="childrens">Filho/a/e(s)</FormLabel>
+      <FormControl isInvalid={!!errors.childrens}>
+        <FormLabel htmlFor="childrens">
+          Filho/a/e(s) <RequiredInput />
+        </FormLabel>
         <RadioGroup id="childrens" colorScheme="green">
           <Stack direction="row">
             <Radio
@@ -304,7 +330,9 @@ export default function GeneralInformations({
       </FormControl>
 
       <FormControl isInvalid={!!errors.civilStatus}>
-        <FormLabel htmlFor="civilStatus">Estado Civil</FormLabel>
+        <FormLabel htmlFor="civilStatus">
+          Estado Civil <RequiredInput />
+        </FormLabel>
         <Input
           id="civilStatus"
           type="text"

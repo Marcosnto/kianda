@@ -7,6 +7,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { FormReactHooksProps } from ".";
+import RequiredInput from "../../Form/RequiredInput";
 
 export default function SecondEmergencyContact({
   errors,
@@ -19,11 +20,10 @@ export default function SecondEmergencyContact({
       </Heading>
       <Divider />
 
-      <FormControl
-        isInvalid={!!errors.secondEmergencyContact?.fullName}
-        isRequired
-      >
-        <FormLabel id="secondEmergencyContactFullName">Nome Completo</FormLabel>
+      <FormControl isInvalid={!!errors.secondEmergencyContact?.fullName}>
+        <FormLabel id="secondEmergencyContactFullName">
+          Nome Completo <RequiredInput />
+        </FormLabel>
         <Input
           id="secondEmergencyContactFullName"
           type="text"
@@ -38,7 +38,9 @@ export default function SecondEmergencyContact({
       </FormControl>
 
       <FormControl isInvalid={!!errors.secondEmergencyContact?.address}>
-        <FormLabel htmlFor="secondEmergencyContactAddress">Endereço</FormLabel>
+        <FormLabel htmlFor="secondEmergencyContactAddress">
+          Endereço <RequiredInput />
+        </FormLabel>
         <Input
           id="secondEmergencyContactAddress"
           type="text"
@@ -54,7 +56,7 @@ export default function SecondEmergencyContact({
 
       <FormControl isInvalid={!!errors.secondEmergencyContact?.contact}>
         <FormLabel htmlFor="secondEmergencyContactContact">
-          Telefone de contato
+          Telefone de contato <RequiredInput />
         </FormLabel>
         <Input
           id="secondEmergencyContactContact"
@@ -70,7 +72,9 @@ export default function SecondEmergencyContact({
       </FormControl>
 
       <FormControl isInvalid={!!errors.secondEmergencyContact?.email}>
-        <FormLabel htmlFor="secondEmergencyContactEmail">E-mail</FormLabel>
+        <FormLabel htmlFor="secondEmergencyContactEmail">
+          E-mail <RequiredInput />
+        </FormLabel>
         <Input
           id="secondEmergencyContactEmail"
           type="email"

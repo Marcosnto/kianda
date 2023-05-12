@@ -1,3 +1,5 @@
+import packageJson from "../../package.json";
+
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
@@ -80,7 +82,7 @@ export default function Admin() {
           color="#FFF"
           textAlign="center"
         >
-          <div>footer</div>
+          <div>Versão: {packageJson.version}</div>
         </GridItem>
       </Grid>
     </>

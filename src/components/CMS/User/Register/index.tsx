@@ -1,3 +1,7 @@
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
 import {
   Center,
   FormControl,
@@ -9,16 +13,14 @@ import {
   Radio,
   Heading,
   Divider,
-  Avatar,
   Flex,
   Button,
   Checkbox,
   Link,
 } from "@chakra-ui/react";
+import LogoImage from "../../LogoImage";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import RequiredInput from "../../Form/RequiredInput";
 
 type RegisterProps = {
   fullName: string;
@@ -61,7 +63,7 @@ function UserRegister() {
 
   return (
     <Center flexDirection="column" pt="15" pb="15" gap="5">
-      <Avatar size="xl" name="Tornar-se Negro" src="/img/logo.png" />
+      <LogoImage pathRedirect="/login" />
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{
@@ -78,8 +80,7 @@ function UserRegister() {
         <Flex flexDir="column" gap="5" mb="10">
           <FormControl isInvalid={!!errors.fullName}>
             <FormLabel htmlFor="fullName">
-              Nome Completo{" "}
-              <span style={{ color: "red", fontWeight: "bold" }}>*</span>
+              Nome Completo <RequiredInput />
             </FormLabel>
 
             <Input
@@ -98,8 +99,7 @@ function UserRegister() {
           <Stack spacing={8} direction="row">
             <FormControl isInvalid={!!errors.email}>
               <FormLabel htmlFor="email">
-                Email{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>*</span>
+                Email <RequiredInput />
               </FormLabel>
 
               <Input
@@ -127,8 +127,7 @@ function UserRegister() {
 
             <FormControl isInvalid={!!errors.emailCheck}>
               <FormLabel htmlFor="emailCheck">
-                Confirme o seu Email{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>*</span>
+                Confirme o seu Email <RequiredInput />
               </FormLabel>
 
               <Input
@@ -157,8 +156,7 @@ function UserRegister() {
           <Stack spacing={8} direction="row">
             <FormControl isInvalid={!!errors.password}>
               <FormLabel htmlFor="password">
-                Senha{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>*</span>
+                Senha <RequiredInput />
               </FormLabel>
 
               <Input
@@ -182,8 +180,7 @@ function UserRegister() {
 
             <FormControl isInvalid={!!errors.passwordCheck}>
               <FormLabel htmlFor="passwordCheck">
-                Confirme sua senha{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>*</span>
+                Confirme sua senha <RequiredInput />
               </FormLabel>
 
               <Input
@@ -208,8 +205,7 @@ function UserRegister() {
 
           <FormControl isInvalid={!!errors.bornDate}>
             <FormLabel htmlFor="bornDate">
-              Data de Nascimento{" "}
-              <span style={{ color: "red", fontWeight: "bold" }}>*</span>
+              Data de Nascimento <RequiredInput />
             </FormLabel>
             <Input
               id="bornDate"
@@ -227,7 +223,7 @@ function UserRegister() {
 
           <FormControl isInvalid={!!errors.gender}>
             <FormLabel htmlFor="gender">
-              Gênero <span style={{ color: "red", fontWeight: "bold" }}>*</span>
+              Gênero <RequiredInput />
             </FormLabel>
             <RadioGroup
               id="gender"
@@ -270,8 +266,7 @@ function UserRegister() {
           {gender === "3" ? (
             <FormControl isInvalid={!!errors.otherGender}>
               <FormLabel htmlFor="otherGender">
-                Informe o gênero{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>*</span>:
+                Informe o gênero <RequiredInput />:
               </FormLabel>
               <Input
                 id="otherGender"
@@ -290,8 +285,7 @@ function UserRegister() {
 
           <FormControl isInvalid={!!errors.disabledPerson}>
             <FormLabel htmlFor="disabledPerson">
-              É uma pessoa com deficiência?{" "}
-              <span style={{ color: "red", fontWeight: "bold" }}>*</span>
+              É uma pessoa com deficiência? <RequiredInput />
             </FormLabel>
             <RadioGroup
               id="disabledPerson"
@@ -326,8 +320,7 @@ function UserRegister() {
           {isDesablePerson === "true" ? (
             <FormControl isInvalid={!!errors.disabledPersonDescription}>
               <FormLabel htmlFor="disabledPersonDescription">
-                Informe a deficiência:{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>*</span>:
+                Informe a deficiência: <RequiredInput />:
               </FormLabel>
               <Input
                 id="disabledPersonDescription"

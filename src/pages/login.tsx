@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useCookies } from "react-cookie";
+
 import {
-  Avatar,
   Box,
   Button,
   Center,
@@ -10,9 +14,10 @@ import {
   Heading,
   Input,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useCookies } from "react-cookie";
+
+import LogoImage from "@/components/CMS/LogoImage";
+import RequiredInput from "@/components/CMS/Form/RequiredInput";
+import AlertStatus from "@/components/CMS/AlertStatus";
 
 type LoginProps = {
   email: string;
@@ -20,13 +25,26 @@ type LoginProps = {
 };
 
 export default function Login() {
-  const [, setCookie] = useCookies(["token"]);
+  const [apiError, setApiError] = useState(false);
+  const [authError, setAuthError] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+
+  const [cookies, setCookie] = useCookies(["token"]);
   const router = useRouter();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginProps>();
+
+  useEffect(() => {
+    if (cookies.token) {
+      setIsAuth(true);
+      setTimeout(() => {
+        router.push("/admin");
+      }, 200);
+    }
+  }, []);
 
   function login(data: LoginProps) {
     fetch(process.env.NEXT_PUBLIC_JWT_URL || "", {
@@ -38,26 +56,34 @@ export default function Login() {
     })
       .then((response) => {
         if (response.ok) {
-          response
-            .json()
-            .then((response) => setCookie("token", response.token));
-          router.push("/admin");
+          response.json().then((response) =>
+            setCookie("token", response.token, {
+              path: "/",
+              sameSite: true,
+            })
+          );
+          setAuthError(false);
+          setTimeout(() => router.push("/admin"), 100);
+        } else {
+          setAuthError(true);
         }
       })
-      .catch((error) => console.log(error));
+      .catch(() => setApiError(true));
   }
 
   const onSubmit: SubmitHandler<LoginProps> = (data) => {
+    setApiError(false);
     login(data);
   };
 
   return (
     <Box background="green.900" h="100vh">
       <Center h="80vh" flexDirection="column" gap="6">
-        <Avatar size="xl" name="Tornar-se Negro" src="/img/logo.png" />
+        <LogoImage pathRedirect="" />
         <Heading color="#FFF" size="md">
-          Torna-se Negro
+          Kianda
         </Heading>
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           style={{
@@ -65,15 +91,32 @@ export default function Login() {
             padding: "2rem",
             border: "1px solid #1A240F",
             borderRadius: "6px",
+            maxWidth: "400px",
           }}
         >
           <Flex flexDir="column" gap="4" mb="5" alignItems="center">
-            <FormControl isInvalid={!!errors.email} isRequired>
-              <FormLabel htmlFor="email">Email</FormLabel>
+            {apiError ? (
+              <AlertStatus
+                type="error"
+                title="Ocorreu um erro!"
+                description="Entre em contato com o suporte."
+              />
+            ) : null}
+            {authError ? (
+              <AlertStatus
+                type="error"
+                description="Email ou senha incorretos"
+              />
+            ) : null}
+            <FormControl isInvalid={!!errors.email}>
+              <FormLabel htmlFor="email">
+                Email <RequiredInput />
+              </FormLabel>
 
               <Input
                 id="email"
                 type="text"
+                disabled={isAuth}
                 {...register("email", {
                   required: "Esse Campo é obrigatório",
                 })}
@@ -85,12 +128,15 @@ export default function Login() {
               </FormErrorMessage>
             </FormControl>
 
-            <FormControl isInvalid={!!errors.password} isRequired>
-              <FormLabel htmlFor="password">Senha</FormLabel>
+            <FormControl isInvalid={!!errors.password}>
+              <FormLabel htmlFor="password">
+                Senha <RequiredInput />
+              </FormLabel>
 
               <Input
                 id="password"
                 type="password"
+                disabled={isAuth}
                 {...register("password", {
                   required: "Esse Campo é obrigatório",
                 })}
@@ -107,6 +153,7 @@ export default function Login() {
               colorScheme="green"
               variant="solid"
               type="submit"
+              isLoading={isSubmitting || isAuth}
               width="100%"
             >
               Entrar

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 import Content from "@/components/CMS/Content";
 import HeaderCMS from "@/components/CMS/HeaderCMS";
@@ -21,62 +22,67 @@ export default function Admin() {
   }, []);
 
   return (
-    <Grid
-      h="100vh"
-      templateAreas={[
-        `
+    <>
+      <Head>
+        <title>Kianda - Painel</title>
+      </Head>
+      <Grid
+        h="100vh"
+        templateAreas={[
+          `
         "header header"
         "content content"
         "content content"
         "footer footer"
       `,
-        `
+          `
         "header header"
         "content content"
         "content content"
         "footer footer"
       `,
-        `
+          `
         "header header"
         "sidenav content"
         "sidenav content"
         "footer footer"
       `,
-      ]}
-      gridTemplateRows={"4.3rem auto auto 2rem"}
-      gridTemplateColumns={[
-        "none",
-        "none",
-        "1.3fr 3fr",
-        "1fr 3fr",
-        "0.8fr 3fr",
-        "0.6fr 3fr",
-      ]}
-    >
-      <GridItem area={"header"} background={"green.900"} color="#FFF">
-        <HeaderCMS setCurrentComponent={setCurrentComponent} />
-      </GridItem>
-
-      <GridItem
-        display={["none", "none", "block"]}
-        area={"sidenav"}
-        boxShadow="md"
+        ]}
+        gridTemplateRows={"4.3rem auto auto 2rem"}
+        gridTemplateColumns={[
+          "none",
+          "none",
+          "1.3fr 3fr",
+          "1fr 3fr",
+          "0.8fr 3fr",
+          "0.6fr 3fr",
+        ]}
       >
-        <Menu setCurrentComponent={setCurrentComponent} />
-      </GridItem>
+        <GridItem area={"header"} background={"green.900"} color="#FFF">
+          <HeaderCMS setCurrentComponent={setCurrentComponent} />
+        </GridItem>
 
-      <GridItem area={"content"}>
-        <Content>{currentComponent}</Content>
-      </GridItem>
+        <GridItem
+          display={["none", "none", "block"]}
+          area={"sidenav"}
+          boxShadow="md"
+        >
+          <Menu setCurrentComponent={setCurrentComponent} />
+        </GridItem>
 
-      <GridItem
-        area={"footer"}
-        background="green.900"
-        color="#FFF"
-        textAlign="center"
-      >
-        <div>footer</div>
-      </GridItem>
-    </Grid>
+        <GridItem area={"content"}>
+          <Content>{currentComponent}</Content>
+        </GridItem>
+
+        <GridItem
+          area={"footer"}
+          background="green.900"
+          color="#FFF"
+          textAlign="center"
+        >
+          <div>footer</div>
+        </GridItem>
+      </Grid>
+    </>
   );
 }

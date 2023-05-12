@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useCookies } from "react-cookie";
 
@@ -77,99 +78,104 @@ export default function Login() {
   };
 
   return (
-    <Box background="green.900" h="100vh">
-      <Center h="80vh" flexDirection="column" gap="6">
-        <LogoImage pathRedirect="" />
-        <Heading color="#FFF" size="md">
-          Kianda
-        </Heading>
+    <>
+      <Head>
+        <title>Kianda - Login</title>
+      </Head>
+      <Box background="green.900" h="100vh">
+        <Center h="80vh" flexDirection="column" gap="6">
+          <LogoImage pathRedirect="" />
+          <Heading color="#FFF" size="md">
+            Kianda
+          </Heading>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          style={{
-            background: "#FFF",
-            padding: "2rem",
-            border: "1px solid #1A240F",
-            borderRadius: "6px",
-            maxWidth: "400px",
-          }}
-        >
-          <Flex flexDir="column" gap="4" mb="5" alignItems="center">
-            {apiError ? (
-              <AlertStatus
-                type="error"
-                title="Ocorreu um erro!"
-                description="Entre em contato com o suporte."
-              />
-            ) : null}
-            {authError ? (
-              <AlertStatus
-                type="error"
-                description="Email ou senha incorretos"
-              />
-            ) : null}
-            <FormControl isInvalid={!!errors.email}>
-              <FormLabel htmlFor="email">
-                Email <RequiredInput />
-              </FormLabel>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            style={{
+              background: "#FFF",
+              padding: "2rem",
+              border: "1px solid #1A240F",
+              borderRadius: "6px",
+              maxWidth: "400px",
+            }}
+          >
+            <Flex flexDir="column" gap="4" mb="5" alignItems="center">
+              {apiError ? (
+                <AlertStatus
+                  type="error"
+                  title="Ocorreu um erro!"
+                  description="Entre em contato com o suporte."
+                />
+              ) : null}
+              {authError ? (
+                <AlertStatus
+                  type="error"
+                  description="Email ou senha incorretos"
+                />
+              ) : null}
+              <FormControl isInvalid={!!errors.email}>
+                <FormLabel htmlFor="email">
+                  Email <RequiredInput />
+                </FormLabel>
 
-              <Input
-                id="email"
-                type="text"
-                disabled={isAuth}
-                {...register("email", {
-                  required: "Esse Campo é obrigatório",
-                })}
-                focusBorderColor="green.900"
-              />
+                <Input
+                  id="email"
+                  type="text"
+                  disabled={isAuth}
+                  {...register("email", {
+                    required: "Esse Campo é obrigatório",
+                  })}
+                  focusBorderColor="green.900"
+                />
 
-              <FormErrorMessage>
-                {errors.email && errors.email.message}
-              </FormErrorMessage>
-            </FormControl>
+                <FormErrorMessage>
+                  {errors.email && errors.email.message}
+                </FormErrorMessage>
+              </FormControl>
 
-            <FormControl isInvalid={!!errors.password}>
-              <FormLabel htmlFor="password">
-                Senha <RequiredInput />
-              </FormLabel>
+              <FormControl isInvalid={!!errors.password}>
+                <FormLabel htmlFor="password">
+                  Senha <RequiredInput />
+                </FormLabel>
 
-              <Input
-                id="password"
-                type="password"
-                disabled={isAuth}
-                {...register("password", {
-                  required: "Esse Campo é obrigatório",
-                })}
-                focusBorderColor="green.800"
-              />
+                <Input
+                  id="password"
+                  type="password"
+                  disabled={isAuth}
+                  {...register("password", {
+                    required: "Esse Campo é obrigatório",
+                  })}
+                  focusBorderColor="green.800"
+                />
 
-              <FormErrorMessage>
-                {errors.password && errors.password.message}
-              </FormErrorMessage>
-            </FormControl>
-          </Flex>
-          <Flex flexDir="column" gap="3">
-            <Button
-              colorScheme="green"
-              variant="solid"
-              type="submit"
-              isLoading={isSubmitting || isAuth}
-              width="100%"
-            >
-              Entrar
-            </Button>
-            <Button
-              colorScheme="green"
-              variant="outline"
-              type="submit"
-              width="100%"
-              onClick={() => router.push("/register")}
-            >
-              Registra-se
-            </Button>
-          </Flex>
-        </form>
-      </Center>
-    </Box>
+                <FormErrorMessage>
+                  {errors.password && errors.password.message}
+                </FormErrorMessage>
+              </FormControl>
+            </Flex>
+            <Flex flexDir="column" gap="3">
+              <Button
+                colorScheme="green"
+                variant="solid"
+                type="submit"
+                isLoading={isSubmitting || isAuth}
+                width="100%"
+              >
+                Entrar
+              </Button>
+              <Button
+                colorScheme="green"
+                variant="outline"
+                type="submit"
+                width="100%"
+                onClick={() => router.push("/register")}
+              >
+                Registra-se
+              </Button>
+            </Flex>
+          </form>
+        </Center>
+      </Box>
+    </>
   );
 }

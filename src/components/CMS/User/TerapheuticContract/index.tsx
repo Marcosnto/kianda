@@ -72,7 +72,9 @@ export default function UserForm() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TherapeuticContractProps>();
+  } = useForm<TherapeuticContractProps>({
+    mode: "onChange",
+  });
   const onSubmit: SubmitHandler<TherapeuticContractProps> = (data) =>
     console.log(data);
 

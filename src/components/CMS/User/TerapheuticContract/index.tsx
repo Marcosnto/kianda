@@ -8,9 +8,10 @@ import {
 
 import GeneralInformations from "./GeneralInformations";
 import Partner from "./Partner";
-import { Box, Button, Heading, Stack } from "@chakra-ui/react";
+import { Box, Button, Divider, Heading, Stack } from "@chakra-ui/react";
 import FirstEmergencyContact from "./FirstEmergencyContact";
 import SecondEmergencyContact from "./SecondEmergencyContact";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type SpouseProps = {
   fullName?: string;
@@ -35,15 +36,21 @@ type TherapeuticContractProps = {
   cpf: string;
   ethnicity: string;
   gender: string;
+  sexualOrientation: string;
+  otherGender?: string;
   disabledPerson: boolean;
+  disabledPersonDescription?: string;
   needSuitability?: boolean;
+  suitabilityDescription: string;
   religion?: string;
   schooling?: string;
   profession?: string;
+  pronouns: string;
   address: string;
   contact: string;
   email: string;
-  childrens: number;
+  childrens: string;
+  childrenQuantity: number;
   civilStatus: string;
   spouse: SpouseProps;
   firstEmergencyContact: EmergencyContactProps;
@@ -54,9 +61,12 @@ export type FormReactHooksProps = {
   errors: FieldErrors<TherapeuticContractProps>;
   register: UseFormRegister<TherapeuticContractProps>;
   watch: UseFormWatch<TherapeuticContractProps>;
+  complementStateSeter?: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function UserForm() {
+  const [hasPartner, setHasParter] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -73,17 +83,29 @@ export default function UserForm() {
       </Heading>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDir="column" gap="7">
+          <Divider />
           <GeneralInformations
             errors={errors}
             register={register}
             watch={watch}
+            complementStateSeter={setHasParter}
           />
-          <Partner errors={errors} register={register} watch={watch} />
+
+          {hasPartner ? (
+            <>
+              <Divider />
+              <Partner errors={errors} register={register} watch={watch} />
+            </>
+          ) : null}
+          <Divider />
+
           <FirstEmergencyContact
             errors={errors}
             register={register}
             watch={watch}
           />
+          <Divider />
+
           <SecondEmergencyContact
             errors={errors}
             register={register}

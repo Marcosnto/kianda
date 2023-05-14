@@ -8,16 +8,20 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { FormReactHooksProps } from ".";
+import RequiredInput from "../../Form/RequiredInput";
+import schoolingOptions from "@/data/mocks/inputOptions/schoolingTypes";
 
 export default function Partner({ errors, register }: FormReactHooksProps) {
   return (
     <>
       <Heading as="h2" size="md">
-        Em caso de Cônjuge
+        Cônjuge
       </Heading>
       <Divider />
       <FormControl isInvalid={!!errors.spouse?.fullName}>
-        <FormLabel id="spouseFullName">Nome Completo</FormLabel>
+        <FormLabel id="spouseFullName">
+          Nome Completo <RequiredInput />
+        </FormLabel>
         <Input
           id="spouseFullName"
           type="text"
@@ -53,9 +57,11 @@ export default function Partner({ errors, register }: FormReactHooksProps) {
             required: "Esse Campo é obrigatório",
           })}
         >
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
+          {schoolingOptions.map((option) => (
+            <option value={option.id} key={option.id}>
+              {option.name}
+            </option>
+          ))}
         </Select>
         <FormErrorMessage>
           {errors.spouse?.schooling && errors.spouse?.schooling.message}

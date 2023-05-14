@@ -5,6 +5,8 @@ import {
   Input,
   Heading,
   Divider,
+  NumberInput,
+  NumberInputField,
 } from "@chakra-ui/react";
 import { FormReactHooksProps } from ".";
 import RequiredInput from "../../Form/RequiredInput";
@@ -60,14 +62,14 @@ export default function FirstEmergencyContact({
         <FormLabel htmlFor="firstEmergencyContactContact">
           Telefone de contato <RequiredInput />
         </FormLabel>
-        <Input
-          id="firstEmergencyContactContact"
-          type="number"
-          {...register("firstEmergencyContact.contact", {
-            required: "Esse Campo é obrigatório",
-          })}
-          focusBorderColor="green.800"
-        />
+        <NumberInput>
+          <NumberInputField
+            id="firstEmergencyContactContact"
+            {...register("firstEmergencyContact.contact", {
+              required: "Esse Campo é obrigatório",
+            })}
+          />
+        </NumberInput>
         <FormErrorMessage>
           {errors.firstEmergencyContact?.contact &&
             errors.firstEmergencyContact?.contact.message}

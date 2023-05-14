@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { FormReactHooksProps } from ".";
+import { FormReactHooksProps } from "@/helpers/CMS/types/forms";
 
 import schoolingTypes from "@/data/mocks/inputOptions/schoolingTypes";
 import civilStatus from "@/data/mocks/inputOptions/civilStatus";
@@ -25,12 +24,14 @@ import {
 export default function GeneralInformations({
   errors,
   register,
-  complementStateSeter,
+  watch,
 }: FormReactHooksProps) {
-  const [gender, setGender] = useState("0");
-  const [isDesablePerson, setIsDesablePerson] = useState("");
-  const [needSuitability, setNeedSuitability] = useState(false);
-  const [haveChildren, setHaveChildren] = useState(false);
+  const watched = watch([
+    "gender",
+    "disabledPerson",
+    "needSuitability",
+    "childrens",
+  ]);
 
   return (
     <>
@@ -64,9 +65,13 @@ export default function GeneralInformations({
           </FormLabel>
           <Input
             id="bornDate"
-            type="date"
+            type="text"
             {...register("bornDate", {
               required: "Esse Campo é obrigatório",
+              pattern: {
+                value: /(^\d{2})\/(1[0-2]|0[1-9])\/(\d{4})$/,
+                message: "Data deve respeitar o formato: dd/mm/aaaa",
+              },
             })}
             focusBorderColor="green.800"
           />
@@ -270,13 +275,6 @@ export default function GeneralInformations({
             {...register("pronouns", {
               required: "Esse Campo é obrigatório",
             })}
-            onChange={(e) => {
-              if (e.target.value == 2) {
-                complementStateSeter(true);
-              } else {
-                complementStateSeter(false);
-              }
-            }}
             colorScheme="green"
           >
             {pronounsTypes.map((option) => (
@@ -296,11 +294,7 @@ export default function GeneralInformations({
           <FormLabel htmlFor="gender">
             Gênero <RequiredInput />
           </FormLabel>
-          <RadioGroup
-            id="gender"
-            colorScheme="green"
-            onClick={(e) => setGender(e.target.value)}
-          >
+          <RadioGroup id="gender" colorScheme="green">
             <Stack direction="row">
               <Radio
                 value="1"
@@ -334,7 +328,7 @@ export default function GeneralInformations({
           </FormErrorMessage>
         </FormControl>
 
-        {gender === "3" ? (
+        {watched[0] === "3" ? (
           <FormControl isInvalid={!!errors.otherGender}>
             <FormLabel htmlFor="otherGender">
               Informe o gênero <RequiredInput />:
@@ -367,13 +361,6 @@ export default function GeneralInformations({
             {...register("civilStatus", {
               required: "Esse Campo é obrigatório",
             })}
-            onChange={(e) => {
-              if (e.target.value == 2) {
-                complementStateSeter(true);
-              } else {
-                complementStateSeter(false);
-              }
-            }}
             colorScheme="green"
           >
             {civilStatus.map((option) => (
@@ -391,16 +378,10 @@ export default function GeneralInformations({
           <FormLabel htmlFor="childrens">
             Filho/a/e(s) <RequiredInput />
           </FormLabel>
-          <RadioGroup
-            id="childrens"
-            colorScheme="green"
-            onClick={(e) =>
-              setHaveChildren(e.target.value == "1" ? true : false)
-            }
-          >
+          <RadioGroup id="childrens" colorScheme="green">
             <Stack direction="row">
               <Radio
-                value="1"
+                value="true"
                 {...register("childrens", {
                   required: "Esse Campo é obrigatório",
                 })}
@@ -408,7 +389,7 @@ export default function GeneralInformations({
                 Sim
               </Radio>
               <Radio
-                value="2"
+                value="false"
                 {...register("childrens", {
                   required: "Esse Campo é obrigatório",
                 })}
@@ -423,7 +404,7 @@ export default function GeneralInformations({
           </FormErrorMessage>
         </FormControl>
 
-        {haveChildren === true ? (
+        {watched[3] === "true" ? (
           <FormControl isInvalid={!!errors.childrenQuantity}>
             <FormLabel htmlFor="childrenQuantity">
               Informe a quantidade de filhos: <RequiredInput />
@@ -466,11 +447,7 @@ export default function GeneralInformations({
           <FormLabel htmlFor="disabledPerson">
             É uma pessoa com deficiência? <RequiredInput />
           </FormLabel>
-          <RadioGroup
-            id="disabledPerson"
-            colorScheme="green"
-            onClick={(e) => setIsDesablePerson(e.target.value)}
-          >
+          <RadioGroup id="disabledPerson" colorScheme="green">
             <Stack direction="row">
               <Radio
                 value="true"
@@ -496,7 +473,7 @@ export default function GeneralInformations({
           </FormErrorMessage>
         </FormControl>
 
-        {isDesablePerson === "true" ? (
+        {watched[1] === "true" ? (
           <>
             <FormControl isInvalid={!!errors.disabledPersonDescription}>
               <FormLabel htmlFor="disabledPersonDescription">
@@ -520,23 +497,17 @@ export default function GeneralInformations({
         ) : null}
       </Stack>
 
-      {isDesablePerson === "true" ? (
+      {watched[1] === "true" ? (
         <>
           <FormControl isInvalid={!!errors.needSuitability}>
             <FormLabel htmlFor="needSuitability">
               Precisa de adequações quanto a infraestrutura online?{" "}
               <RequiredInput />
             </FormLabel>
-            <RadioGroup
-              id="needSuitability"
-              colorScheme="green"
-              onClick={(e) =>
-                setNeedSuitability(e.target.value == "1" ? true : false)
-              }
-            >
+            <RadioGroup id="needSuitability" colorScheme="green">
               <Stack direction="row">
                 <Radio
-                  value="1"
+                  value="true"
                   {...register("needSuitability", {
                     required: "Esse Campo é obrigatório",
                   })}
@@ -544,7 +515,7 @@ export default function GeneralInformations({
                   Sim
                 </Radio>
                 <Radio
-                  value="2"
+                  value="false"
                   {...register("needSuitability", {
                     required: "Esse Campo é obrigatório",
                   })}
@@ -559,7 +530,7 @@ export default function GeneralInformations({
             </FormErrorMessage>
           </FormControl>
 
-          {needSuitability === true ? (
+          {watched[2] === "true" ? (
             <FormControl isInvalid={!!errors.suitabilityDescription}>
               <FormLabel htmlFor="suitabilityDescription">
                 Informe a adequação: <RequiredInput />:

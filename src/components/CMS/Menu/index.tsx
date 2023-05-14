@@ -1,11 +1,9 @@
-import { Divider, Flex, Heading } from "@chakra-ui/react";
-import MenuOptions from "./MenuOptions";
-import { admin } from "@/data/menuOptionsPermitions";
+import { MenuProps } from "@/helpers/CMS/types/components";
 
-type MenuProps = {
-  setCurrentComponent: () => void;
-  onClose?: () => void;
-};
+import MenuOptions from "./MenuOptions";
+import { Divider, Flex, Heading } from "@chakra-ui/react";
+
+import { admin } from "@/data/menuOptionsPermitions";
 
 export default function Menu({ setCurrentComponent, onClose }: MenuProps) {
   return (

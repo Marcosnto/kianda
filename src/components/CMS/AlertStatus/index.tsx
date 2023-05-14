@@ -1,3 +1,4 @@
+import { AlertStatusProps } from "@/helpers/CMS/types/components";
 import {
   Alert,
   AlertIcon,
@@ -5,12 +6,6 @@ import {
   AlertDescription,
   Flex,
 } from "@chakra-ui/react";
-
-type AlertStatusProps = {
-  type: "info" | "warning" | "success" | "error" | "loading";
-  title?: string;
-  description: string;
-};
 
 function AlertStatus({ type, title, description }: AlertStatusProps) {
   return (

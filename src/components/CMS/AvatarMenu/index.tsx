@@ -1,14 +1,10 @@
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
+import { AvatarMenuProps } from "@/helpers/CMS/types/components";
+
 import { AddIcon, ArrowForwardIcon, LockIcon } from "@chakra-ui/icons";
 import { Avatar, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-
-type AvatarMenuProps = {
-  icon: React.ReactElement;
-  content: string;
-  onClick?: () => void;
-};
 
 export default function AvatarMenu() {
   const router = useRouter();

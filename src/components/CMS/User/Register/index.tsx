@@ -1,6 +1,9 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
+
+import { RegisterProps } from "@/helpers/CMS/types/forms";
 
 import {
   Center,
@@ -19,22 +22,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import LogoImage from "../../LogoImage";
-import NextLink from "next/link";
 import RequiredInput from "../../Form/RequiredInput";
-
-type RegisterProps = {
-  fullName: string;
-  email: string;
-  emailCheck: string;
-  password: string;
-  passwordCheck: string;
-  bornDate: Date;
-  gender: string;
-  otherGender?: string;
-  disabledPerson: string;
-  disabledPersonDescription?: string;
-  acceptTerm: boolean;
-};
 
 function UserRegister() {
   const [gender, setGender] = useState("0");

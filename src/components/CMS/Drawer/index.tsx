@@ -1,3 +1,7 @@
+import { DrawnerMenu } from "@/helpers/CMS/types/components";
+
+import Menu from "../Menu";
+
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import {
   Drawer,
@@ -7,14 +11,6 @@ import {
   DrawerOverlay,
   IconButton,
 } from "@chakra-ui/react";
-
-import Menu from "../Menu";
-
-type DrawnerMenu = {
-  onClose: () => void;
-  isOpen: boolean;
-  setCurrentComponent: () => void;
-};
 
 export default function DrawerMenu({
   onClose,

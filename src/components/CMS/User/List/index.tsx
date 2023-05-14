@@ -1,5 +1,7 @@
 import users from "@/data/usersMock";
 
+import ButtonActions from "../../Form/ActionsButtons";
+
 import {
   Badge,
   Table,
@@ -11,7 +13,6 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import ButtonActions from "../../Form/ActionsButtons";
 
 export default function UsersList() {
   function getStatusBadge(status: string) {

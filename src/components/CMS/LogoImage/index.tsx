@@ -1,9 +1,6 @@
+import { LogoImage } from "@/helpers/CMS/types/components";
 import { Avatar } from "@chakra-ui/react";
 import Link from "next/link";
-
-type LogoImage = {
-  pathRedirect: string;
-};
 
 function LogoImage({ pathRedirect }: LogoImage) {
   return (

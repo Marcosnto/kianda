@@ -1,7 +1,10 @@
+import { userOptions } from "@/helpers/CMS/types/mocks";
+
 import Post from "@/components/CMS/Blog/Post";
 import PostsList from "@/components/CMS/Blog/List";
 import UserForm from "@/components/CMS/User/TerapheuticContract";
 import UsersList from "@/components/CMS/User/List";
+
 import { Icon } from "@chakra-ui/react";
 import {
   IoPeopleOutline,
@@ -9,19 +12,6 @@ import {
   IoDocumentTextOutline,
   IoFolderOutline,
 } from "react-icons/io5";
-
-export type OptionsProps = {
-  key: string;
-  icon: JSX.Element;
-  displayName: string;
-  render?: JSX.Element;
-};
-
-export type userOptions = {
-  type: string;
-  users: Array<OptionsProps>;
-  blog: Array<OptionsProps>;
-};
 
 function getIcon(iconName: any) {
   return <Icon as={iconName} w="5" h="5" />;

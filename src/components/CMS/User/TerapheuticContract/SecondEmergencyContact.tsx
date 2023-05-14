@@ -1,3 +1,5 @@
+import { FormReactHooksProps } from "@/helpers/CMS/types/forms";
+
 import {
   FormControl,
   FormLabel,
@@ -6,7 +8,6 @@ import {
   Heading,
   Divider,
 } from "@chakra-ui/react";
-import { FormReactHooksProps } from ".";
 import RequiredInput from "../../Form/RequiredInput";
 
 export default function SecondEmergencyContact({

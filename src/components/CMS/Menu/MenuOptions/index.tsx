@@ -1,10 +1,5 @@
+import { MenuOptionsProps } from "@/helpers/CMS/types/components";
 import { Box } from "@chakra-ui/react";
-import { OptionsProps } from "@/data/menuOptionsPermitions";
-
-interface MenuOptionsProps extends OptionsProps {
-  setCurrentComponent: (render: any) => void;
-  onClose?: () => void;
-}
 
 export default function MenuOptions({
   icon,
@@ -12,7 +7,7 @@ export default function MenuOptions({
   render,
   setCurrentComponent,
   onClose,
-}: MenuOptionsProps): JSX.Element {
+}: MenuOptionsProps) {
   return (
     <Box
       _hover={{ bg: "green.600", rounded: "8px", color: "white" }}
@@ -25,7 +20,7 @@ export default function MenuOptions({
       mr="4"
       mt="2"
       onClick={() => {
-        setCurrentComponent(render);
+        setCurrentComponent(render || <></>);
         onClose && onClose();
       }}
     >

@@ -1,9 +1,12 @@
-import { HamburgerIcon } from "@chakra-ui/icons";
-import { IconButton, useDisclosure, Box, Heading } from "@chakra-ui/react";
+import { HeaderCMSProps } from "@/helpers/CMS/types/components";
+
 import DrawnerMenu from "@/components/CMS/Drawer";
 import AvatarMenu from "@/components/CMS/AvatarMenu";
 
-export default function HeaderCMS({ setCurrentComponent }: any) {
+import { HamburgerIcon } from "@chakra-ui/icons";
+import { IconButton, useDisclosure, Box, Heading } from "@chakra-ui/react";
+
+export default function HeaderCMS({ setCurrentComponent }: HeaderCMSProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

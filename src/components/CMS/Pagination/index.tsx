@@ -1,17 +1,11 @@
+import { PaginationProps } from "@/helpers/CMS/types/components";
 import { Flex, Button } from "@chakra-ui/react";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-
-type PaginationProps = {
-  totalPages: number;
-  currentPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
-};
 
 function Pagination({
   totalPages,
   currentPage,
   setCurrentPage,
-}: PaginationProps): JSX.Element {
+}: PaginationProps) {
   function paginationButton(number: number) {
     return (
       <Button

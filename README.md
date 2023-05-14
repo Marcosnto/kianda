@@ -19,7 +19,7 @@ The principal motivation to this project is to put in practice some knowledge fr
 <ul>
 <li><a href="https://nextjs.org/">NextJS</a></li>
 <li><a href="https://chakra-ui.com/">Chakra UI</a></li>
-<!-- <li><a href="https://tanstack.com/query/v3/">React Query</a></li> -->
+<li><a href="https://tanstack.com/query/v3/">React Query</a></li>
 <li><a href="https://jestjs.io/pt-BR/">Jest</a></li>
 <li><a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a></li>
 <li><a href="https://github.com/typicode/husky">Husky</a></li>

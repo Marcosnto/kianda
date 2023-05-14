@@ -143,13 +143,17 @@ export default function GeneralInformations({
 
         <FormControl isInvalid={!!errors.contact}>
           <FormLabel htmlFor="contact">
-            Telefone <RequiredInput />
+            Telefone (com DDD) <RequiredInput />
           </FormLabel>
           <NumberInput>
             <NumberInputField
               id="contact"
               {...register("contact", {
                 required: "Esse Campo é obrigatório",
+                pattern: {
+                  value: /^\(?\d{2}\)?\d{1}\d{4}\d{4}$/,
+                  message: "Telefone no formato incorreto",
+                },
               })}
             />
           </NumberInput>

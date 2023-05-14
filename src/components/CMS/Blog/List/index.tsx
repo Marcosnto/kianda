@@ -1,3 +1,9 @@
+import { useEffect, useState } from "react";
+
+import ButtonActions from "../../Form/ActionsButtons";
+import Pagination from "../../Pagination";
+import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
+
 import {
   Badge,
   Table,
@@ -8,22 +14,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import ButtonActions from "../../Form/ActionsButtons";
-import { useEffect, useState } from "react";
-import Pagination from "../../Pagination";
-import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
-
-type Article = {
-  id: number;
-  title: string;
-  author: string;
-  description: string;
-  content: string;
-  status: string;
-  image: any;
-  imageDescription: string;
-  imageSub: string;
-};
+import { Article } from "@/helpers/CMS/types/blog";
 
 export default function PostsList() {
   const [posts, setPosts] = useState([]);

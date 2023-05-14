@@ -1,3 +1,4 @@
+import { Article } from "@/helpers/CMS/types/blog";
 import {
   Box,
   Button,
@@ -10,17 +11,6 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-type Article = {
-  title: string;
-  author: string;
-  description: string;
-  content: string;
-  slug: string;
-  image: any;
-  imageDescription: string;
-  imageSub: string;
-};
 
 export default function Post() {
   const {

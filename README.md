@@ -1,5 +1,7 @@
 # Kianda!  
 
+PS: This project is in your initial development, so don't have a first version yet.
+
 Kianda is a phycologist  platform that consist in a website that will share articles and professional information about the phycologist Adelmo Filho. This platform will have an interface (CMS) for the phycologist to get information about yours patients and also these patients about their consults.
 
 <h3>Motivation</h3>

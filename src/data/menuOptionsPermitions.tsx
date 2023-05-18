@@ -1,8 +1,8 @@
 import { userOptions } from "@/helpers/CMS/types/mocks";
 
-import Post from "@/components/CMS/Blog/Post";
+import Post from "@/components/CMS/Form/Blog/Post";
 import PostsList from "@/components/CMS/Blog/List";
-import UserForm from "@/components/CMS/User/TerapheuticContract";
+import UserForm from "@/components/CMS/Form/User/TerapheuticContract";
 import UsersList from "@/components/CMS/User/List";
 
 import { Icon } from "@chakra-ui/react";

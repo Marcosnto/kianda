@@ -1,8 +1,13 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import { CookiesProvider } from "react-cookie";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const client = new QueryClient({});
+
   const theme = extendTheme({
     colors: {
       orange: {
@@ -46,9 +51,12 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ChakraProvider theme={theme}>
-      <CookiesProvider>
-        <Component {...pageProps} />
-      </CookiesProvider>
+      <QueryClientProvider client={client}>
+        <CookiesProvider>
+          <Component {...pageProps} />
+        </CookiesProvider>
+        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      </QueryClientProvider>
     </ChakraProvider>
   );
 }

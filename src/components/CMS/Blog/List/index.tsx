@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery } from "react-query";
 
 import ButtonActions from "../../Form/ActionsButtons";
 import Pagination from "../../Pagination";
@@ -17,14 +18,23 @@ import {
 import { Article } from "@/helpers/CMS/types/blog";
 
 export default function PostsList() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(0);
 
-  useEffect(() => {
-    get();
-  }, [currentPage]);
+  const { data, isLoading, error } = useQuery(["blogList", currentPage], () =>
+    fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + `/articles?_page=${currentPage}` || "",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((res) => {
+      setNumberOfPages(res.headers.get("X-Total-Count"));
+      return res.json();
+    })
+  );
 
   function getStatusBadge(status: string) {
     let colorScheme = "";
@@ -57,62 +67,55 @@ export default function PostsList() {
     }
   }
 
-  function get() {
-    setLoading(true);
-    fetch(
-      process.env.NEXT_PUBLIC_BASE_URL + `/articles?_page=${currentPage}` || "",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    ).then((response) => {
-      setNumberOfPages(response.headers.get("X-Total-Count"));
-      response.json().then((response) => setPosts(response));
-      setLoading(false);
-    });
+  if (isLoading) {
+    return <ArticleSkeleton />;
   }
 
-  if (loading) {
-    return <ArticleSkeleton />;
+  if (error) {
+    return <h1>Ocorreu um erro, entre em contato com o suporte</h1>;
   }
 
   return (
     <>
-      <TableContainer>
-        <Table variant="striped" size="sm" colorScheme="green">
-          <Thead>
-            <Tr>
-              <Th>ID</Th>
-              <Th>Título</Th>
-              <Th>Descrição</Th>
-              <Th>Situação</Th>
-              <Th>Ações</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {posts?.map((post: Article) => (
-              <Tr key={post.id}>
-                <Td>{post.id}</Td>
-                <Td>{post.title}</Td>
-                <Td overflow="hidden" maxW="30ch" textOverflow="ellipsis">
-                  {post.description}
-                </Td>
-                <Td>{getStatusBadge(post.status)}</Td>
-                <Td>
-                  <ButtonActions />
-                </Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {data ? (
+        <>
+          <TableContainer>
+            <Table variant="striped" size="sm" colorScheme="green">
+              <Thead>
+                <Tr>
+                  <Th>ID</Th>
+                  <Th>Título</Th>
+                  <Th>Descrição</Th>
+                  <Th>Situação</Th>
+                  <Th>Ações</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {data?.map((post: Article) => (
+                  <Tr key={post.id}>
+                    <Td>{post.id}</Td>
+                    <Td>{post.title}</Td>
+                    <Td overflow="hidden" maxW="30ch" textOverflow="ellipsis">
+                      {post.description}
+                    </Td>
+                    <Td>{getStatusBadge(post.status)}</Td>
+                    <Td>
+                      <ButtonActions />
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />{" "}
+        </>
+      ) : (
+        <h1>Não há dados para serem exibidos</h1>
+      )}
     </>
   );
 }

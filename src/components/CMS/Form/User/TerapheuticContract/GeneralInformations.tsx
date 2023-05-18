@@ -4,7 +4,7 @@ import schoolingTypes from "@/data/mocks/inputOptions/schoolingTypes";
 import civilStatus from "@/data/mocks/inputOptions/civilStatus";
 import pronounsTypes from "@/data/mocks/inputOptions/pronounsTypes";
 
-import RequiredInput from "../../Form/RequiredInput";
+import RequiredInput from "../../RequiredInput";
 
 import {
   FormControl,

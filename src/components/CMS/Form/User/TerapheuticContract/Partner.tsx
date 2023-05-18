@@ -9,7 +9,7 @@ import {
   Heading,
   Divider,
 } from "@chakra-ui/react";
-import RequiredInput from "../../Form/RequiredInput";
+import RequiredInput from "../../RequiredInput";
 import schoolingOptions from "@/data/mocks/inputOptions/schoolingTypes";
 
 export default function Partner({ errors, register }: FormReactHooksProps) {

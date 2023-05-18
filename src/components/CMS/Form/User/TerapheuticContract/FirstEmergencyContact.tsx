@@ -11,7 +11,7 @@ import {
   NumberInputField,
 } from "@chakra-ui/react";
 
-import RequiredInput from "../../Form/RequiredInput";
+import RequiredInput from "../../RequiredInput";
 
 export default function FirstEmergencyContact({
   errors,

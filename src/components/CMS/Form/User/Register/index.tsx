@@ -21,21 +21,19 @@ import {
   Checkbox,
   Link,
 } from "@chakra-ui/react";
-import LogoImage from "../../LogoImage";
-import RequiredInput from "../../Form/RequiredInput";
+import LogoImage from "../../../LogoImage";
+import RequiredInput from "../../RequiredInput";
 
 function UserRegister() {
-  const [gender, setGender] = useState("0");
-  const [isDesablePerson, setIsDesablePerson] = useState("");
-
-  const router = useRouter();
   const privacyPolicyLink = process.env.NEXT_PUBLIC_PRIVACY_POLICY;
   const useTermsLink = process.env.NEXT_PUBLIC_USE_TERMS;
 
+  const router = useRouter();
   const {
     register,
     getValues,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting, isValid },
   } = useForm<RegisterProps>();
   const onSubmit: SubmitHandler<RegisterProps> = (data) => {
@@ -48,6 +46,8 @@ function UserRegister() {
       });
     }
   };
+
+  const watched = watch(["gender", "disabledPerson"]);
 
   return (
     <Center flexDirection="column" pt="15" pb="15" gap="5">
@@ -213,11 +213,7 @@ function UserRegister() {
             <FormLabel htmlFor="gender">
               Gênero <RequiredInput />
             </FormLabel>
-            <RadioGroup
-              id="gender"
-              colorScheme="green"
-              onClick={(e) => setGender(e.target.value)}
-            >
+            <RadioGroup id="gender" colorScheme="green">
               <Stack direction="row">
                 <Radio
                   value="1"
@@ -251,7 +247,7 @@ function UserRegister() {
             </FormErrorMessage>
           </FormControl>
 
-          {gender === "3" ? (
+          {watched[0] === "3" ? (
             <FormControl isInvalid={!!errors.otherGender}>
               <FormLabel htmlFor="otherGender">
                 Informe o gênero <RequiredInput />:
@@ -275,11 +271,7 @@ function UserRegister() {
             <FormLabel htmlFor="disabledPerson">
               É uma pessoa com deficiência? <RequiredInput />
             </FormLabel>
-            <RadioGroup
-              id="disabledPerson"
-              colorScheme="green"
-              onClick={(e) => setIsDesablePerson(e.target.value)}
-            >
+            <RadioGroup id="disabledPerson" colorScheme="green">
               <Stack direction="row">
                 <Radio
                   value="true"
@@ -305,7 +297,7 @@ function UserRegister() {
             </FormErrorMessage>
           </FormControl>
 
-          {isDesablePerson === "true" ? (
+          {watched[1] === "true" ? (
             <FormControl isInvalid={!!errors.disabledPersonDescription}>
               <FormLabel htmlFor="disabledPersonDescription">
                 Informe a deficiência: <RequiredInput />:

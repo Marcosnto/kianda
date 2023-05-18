@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import UserRegister from "@/components/CMS/User/Register";
+import UserRegister from "@/components/CMS/Form/User/Register";
 import { Box } from "@chakra-ui/react";
 
 export default function Register() {

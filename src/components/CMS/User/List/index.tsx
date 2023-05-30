@@ -3,7 +3,6 @@ import users from "@/data/usersMock";
 import ButtonActions from "../../Form/ActionsButtons";
 
 import {
-  Badge,
   Table,
   TableContainer,
   Tbody,
@@ -13,32 +12,9 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import getStatusBadge from "@/utils/getStatusBadge";
 
 export default function UsersList() {
-  function getStatusBadge(status: string) {
-    let colorScheme = "";
-
-    switch (status.toLowerCase()) {
-      case "ativo":
-        colorScheme = "blue";
-        break;
-      case "cancelado":
-        colorScheme = "red";
-        break;
-      case "pausado":
-        colorScheme = "orange";
-        break;
-      default:
-        break;
-    }
-
-    return (
-      <Badge variant="subtle" colorScheme={colorScheme}>
-        {status}
-      </Badge>
-    );
-  }
-
   return (
     <TableContainer>
       <Table variant="striped" size="sm" colorScheme="green">

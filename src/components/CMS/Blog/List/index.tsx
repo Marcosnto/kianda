@@ -6,7 +6,6 @@ import Pagination from "../../Pagination";
 import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
 
 import {
-  Badge,
   Table,
   TableContainer,
   Tbody,
@@ -16,10 +15,12 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { Article } from "@/helpers/CMS/types/blog";
+import getStatusBadge from "@/utils/getStatusBadge";
+import setNumberOfPages from "@/utils/setNumberOfPages";
 
 export default function PostsList() {
-  const [totalPages, setTotalPages] = useState(1);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState<number | undefined>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const { data, isLoading, error } = useQuery(["blogList", currentPage], () =>
     fetch(
@@ -31,41 +32,11 @@ export default function PostsList() {
         },
       }
     ).then((res) => {
-      setNumberOfPages(res.headers.get("X-Total-Count"));
+      const totalItens = res.headers.get("X-Total-Count");
+      setTotalPages(setNumberOfPages(totalItens));
       return res.json();
     })
   );
-
-  function getStatusBadge(status: string) {
-    let colorScheme = "";
-    let statusName = "";
-
-    switch (status.toLowerCase()) {
-      case "publish":
-        colorScheme = "blue";
-        statusName = "Publicada";
-        break;
-      case "draft":
-        colorScheme = "gray";
-        statusName = "Rascunho";
-        break;
-      default:
-        break;
-    }
-
-    return (
-      <Badge variant="subtle" colorScheme={colorScheme}>
-        {statusName}
-      </Badge>
-    );
-  }
-
-  function setNumberOfPages(totalPageFromResponse: string | null) {
-    if (totalPageFromResponse) {
-      const totalPages = Math.ceil(+totalPageFromResponse / 5);
-      setTotalPages(totalPages);
-    }
-  }
 
   if (isLoading) {
     return <ArticleSkeleton />;

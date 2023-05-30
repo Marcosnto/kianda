@@ -29,7 +29,7 @@ export type MenuProps = {
 };
 
 export type PaginationProps = {
-  totalPages: number;
+  totalPages: number | undefined;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
 };

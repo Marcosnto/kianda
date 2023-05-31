@@ -36,14 +36,33 @@ function UserRegister() {
     watch,
     formState: { errors, isSubmitting, isValid },
   } = useForm<RegisterProps>();
+
+  function post(data: RegisterProps) {
+    fetch(process.env.NEXT_PUBLIC_BASE_URL + "/user" || "", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fullName: data.fullName,
+        bornDate: data.bornDate,
+        email: data.email,
+        password: data.password,
+        // pronouns: data.pronouns,
+        gender: data.gender,
+        otherGender: data.otherGender,
+        disabledPerson: data.disabledPerson,
+        disabledPersonDescription: data.disabledPersonDescription,
+        acceptTerms: data.acceptTerm,
+      }),
+    }).then((response) => {
+      response.json().then((response) => console.log(response));
+    });
+  }
+
   const onSubmit: SubmitHandler<RegisterProps> = (data) => {
     if (isValid) {
-      return new Promise<void>((resolve) => {
-        setTimeout(() => {
-          alert(JSON.stringify(data, null, 2));
-          resolve();
-        }, 1000);
-      });
+      post(data);
     }
   };
 

@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 
 import LogoImage from "@/components/CMS/LogoImage";
-import RequiredInput from "@/components/CMS/Form/RequiredInput";
+import RequiredInput from "@/components/CMS/Forms/RequiredInput";
 import AlertStatus from "@/components/CMS/AlertStatus";
 
 type LoginProps = {

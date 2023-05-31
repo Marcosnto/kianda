@@ -18,9 +18,46 @@ export default function UserForm() {
   } = useForm<TherapeuticContractProps>({
     mode: "onChange",
   });
+
+  function post(data: TherapeuticContractProps) {
+    fetch(process.env.NEXT_PUBLIC_BASE_URL + "/terapheutic-contract" || "", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fullName: data.fullName,
+        bornDate: data.bornDate,
+        rg: data.rg,
+        cpf: data.cpf,
+        email: data.email,
+        contact: data.contact,
+        address: data.address,
+        schooling: data.schooling,
+        profession: data.profession,
+        ethnicity: data.ethnicity,
+        sexualOrientation: data.sexualOrientation,
+        pronouns: data.pronouns,
+        gender: data.gender,
+        otherGender: data.otherGender,
+        civilStatus: data.civilStatus,
+        childrens: data.childrens,
+        religion: data.religion,
+        disabledPerson: data.disabledPerson,
+        disabledPersonDescription: data.disabledPersonDescription,
+        needSuitability: data.needSuitability,
+        spouse: JSON.stringify(data.spouse),
+        firstEmergencyContact: JSON.stringify(data.firstEmergencyContact),
+        secondEmergencyContact: JSON.stringify(data.secondEmergencyContact),
+      }),
+    }).then((response) => {
+      response.json().then((response) => console.log(response));
+    });
+  }
+
   const onSubmit: SubmitHandler<TherapeuticContractProps> = (data) => {
     if (!!errors) {
-      console.log(data);
+      post(data);
     }
   };
 

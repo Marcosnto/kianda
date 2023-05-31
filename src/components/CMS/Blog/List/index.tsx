@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 
-import ButtonActions from "../../Form/ActionsButtons";
+import ButtonActions from "../../Forms/ActionsButtons";
 import Pagination from "../../Pagination";
 import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
 

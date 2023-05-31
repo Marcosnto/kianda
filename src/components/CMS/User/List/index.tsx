@@ -1,6 +1,6 @@
 import users from "@/data/usersMock";
 
-import ButtonActions from "../../Form/ActionsButtons";
+import ButtonActions from "../../Forms/ActionsButtons";
 
 import {
   Table,

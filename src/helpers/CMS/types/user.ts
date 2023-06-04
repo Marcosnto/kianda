@@ -1,0 +1,21 @@
+import { Dispatch, SetStateAction } from "react";
+
+export type UserProps = {
+  id: number;
+  type: number;
+  name: string;
+  status: string;
+};
+
+export type TableHeadersProps = {
+  name: string;
+  key: string;
+};
+
+export type TableListProps = {
+  data: Array<UserProps>;
+  headers: Array<TableHeadersProps>;
+  totalPages: number | undefined;
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+};

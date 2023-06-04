@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 
+import { Article } from "@/helpers/CMS/types/blog";
+import { apiError, noDataToShow } from "@/helpers/CMS/messages";
+import getStatusBadge from "@/utils/getStatusBadge";
+import setNumberOfPages from "@/utils/setNumberOfPages";
+
 import ButtonActions from "../../Forms/ActionsButtons";
 import Pagination from "../../Pagination";
 import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
-
 import {
   Table,
   TableContainer,
@@ -14,9 +18,6 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { Article } from "@/helpers/CMS/types/blog";
-import getStatusBadge from "@/utils/getStatusBadge";
-import setNumberOfPages from "@/utils/setNumberOfPages";
 
 export default function PostsList() {
   const [totalPages, setTotalPages] = useState<number | undefined>(1);
@@ -43,7 +44,7 @@ export default function PostsList() {
   }
 
   if (error) {
-    return <h1>Ocorreu um erro, entre em contato com o suporte</h1>;
+    return <h1>{apiError}</h1>;
   }
 
   return (
@@ -85,7 +86,7 @@ export default function PostsList() {
           />{" "}
         </>
       ) : (
-        <h1>Não há dados para serem exibidos</h1>
+        <h1>{noDataToShow}</h1>
       )}
     </>
   );

@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import RequiredInput from "../../RequiredInput";
 
-function UserRegister() {
+function UserAutoRegister() {
   const privacyPolicyLink = process.env.NEXT_PUBLIC_PRIVACY_POLICY;
   const useTermsLink = process.env.NEXT_PUBLIC_USE_TERMS;
 
@@ -378,7 +378,6 @@ function UserRegister() {
         <Button
           colorScheme="green"
           variant="outline"
-          type="submit"
           width="100%"
           onClick={() => router.push("/login")}
         >
@@ -389,4 +388,4 @@ function UserRegister() {
   );
 }
 
-export default UserRegister;
+export default UserAutoRegister;

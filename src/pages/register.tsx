@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import UserRegister from "@/components/CMS/Forms/User/AutoRegister";
+import UserAutoRegister from "@/components/CMS/Forms/User/AutoRegister";
 import { Box, Center } from "@chakra-ui/react";
 import LogoImage from "@/components/CMS/LogoImage";
 
@@ -12,7 +12,7 @@ export default function Register() {
       </Head>
       <Center flexDirection="column" pt="15" pb="15" gap="5">
         <LogoImage pathRedirect="/login" />
-        <UserRegister />
+        <UserAutoRegister />
       </Center>
     </Box>
   );

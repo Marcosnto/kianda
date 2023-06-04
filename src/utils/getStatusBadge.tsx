@@ -5,25 +5,38 @@ export default function getStatusBadge(status: string) {
   let statusName = "";
 
   switch (status.toLowerCase()) {
+    /** Articles */
     case "publish":
       colorScheme = "blue";
       statusName = "Publicada";
       break;
+    case "draft":
+      colorScheme = "gray";
+      statusName = "Rascunho";
+      break;
+
+    /** User Status */
     case "ativo":
       colorScheme = "blue";
       statusName = "Ativo";
       break;
-    case "cancelado":
+    case "suspenso":
       colorScheme = "red";
-      statusName = "Cancelado";
+      statusName = "Suspenso";
       break;
-    case "pausado":
+    case "aguardando aprovação":
       colorScheme = "orange";
-      statusName = "Pausado";
+      statusName = "Aguardando Aprovação";
       break;
-    case "draft":
-      colorScheme = "gray";
-      statusName = "Rascunho";
+
+    /** Contract Status */
+    case "complete":
+      colorScheme = "blue";
+      statusName = "Completo";
+      break;
+    case "incomplete":
+      colorScheme = "red";
+      statusName = "Incompleto";
       break;
     default:
       break;

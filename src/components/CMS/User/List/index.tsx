@@ -1,52 +1,53 @@
-import users from "@/data/usersMock";
+import { useState } from "react";
+import { useQuery } from "react-query";
 
-import ButtonActions from "../../Forms/ActionsButtons";
+import setNumberOfPages from "@/utils/setNumberOfPages";
+import { apiError } from "@/helpers/CMS/messages";
 
-import {
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Tfoot,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
-import getStatusBadge from "@/utils/getStatusBadge";
+import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
+import TableList from "../../Table";
 
 export default function UsersList() {
+  const [totalPages, setTotalPages] = useState<number | undefined>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const tableHeaders = [
+    { name: "ID", key: "User-ID" },
+    { name: "Nome", key: "User-Name" },
+    { name: "Cadastro", key: "User-Status" },
+    { name: "Ações", key: "User-Actions" },
+  ];
+
+  const { data, isLoading, error } = useQuery(["usersList", currentPage], () =>
+    fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + `/users?_page=${currentPage}` || "",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((res) => {
+      const totalItens = res.headers.get("X-Total-Count");
+      setTotalPages(setNumberOfPages(totalItens));
+      return res.json();
+    })
+  );
+
+  if (isLoading) {
+    return <ArticleSkeleton />;
+  }
+
+  if (error) {
+    return <h1>{apiError}</h1>;
+  }
+
   return (
-    <TableContainer>
-      <Table variant="striped" size="sm" colorScheme="green">
-        <Thead>
-          <Tr>
-            <Th>ID</Th>
-            <Th>Título</Th>
-            <Th>Cadastro</Th>
-            <Th>Ações</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {users.map((user) => (
-            <Tr key={user.id}>
-              <Td>{user.id}</Td>
-              <Td>{user.name}</Td>
-              <Td>{getStatusBadge(user.status)}</Td>
-              <Td>
-                <ButtonActions />
-              </Td>
-            </Tr>
-          ))}
-        </Tbody>
-        <Tfoot>
-          <Tr>
-            <Th>ID</Th>
-            <Th>Nome</Th>
-            <Th>Situação</Th>
-            <Th>Ações</Th>
-          </Tr>
-        </Tfoot>
-      </Table>
-    </TableContainer>
+    <TableList
+      data={data}
+      headers={tableHeaders}
+      totalPages={totalPages}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+    />
   );
 }

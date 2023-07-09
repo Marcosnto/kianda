@@ -35,7 +35,7 @@ function UserAutoRegister() {
   } = useForm<RegisterProps>();
 
   function post(data: RegisterProps) {
-    fetch(process.env.NEXT_PUBLIC_BASE_URL + "/user" || "", {
+    fetch(process.env.NEXT_PUBLIC_BASE_URL + "/user-register" || "", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

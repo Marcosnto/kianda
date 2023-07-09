@@ -53,7 +53,7 @@ export default function PostsList() {
     <>
       {data ? (
         <>
-          <ComponentTitle title="Lista de Artigos" type="h1" size="lg" />
+          <ComponentTitle title="Artigos" type="h1" size="lg" />
           <TableContainer>
             <Table variant="striped" size="sm" colorScheme="green">
               <Thead>

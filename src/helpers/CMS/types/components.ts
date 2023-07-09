@@ -1,5 +1,6 @@
 import { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import { OptionsProps } from "./mocks";
+import { As } from "@chakra-ui/react";
 
 export type AvatarMenuProps = {
   icon: React.ReactElement;
@@ -41,4 +42,10 @@ export interface MenuOptionsProps extends OptionsProps {
 
 export type LogoImage = {
   pathRedirect: string;
+};
+
+export type ComponentTitleProps = {
+  title: string;
+  type: As | undefined;
+  size?: string;
 };

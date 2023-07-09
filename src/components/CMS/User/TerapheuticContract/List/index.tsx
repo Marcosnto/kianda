@@ -6,6 +6,7 @@ import { apiError } from "@/helpers/CMS/messages";
 
 import TableList from "@/components/CMS/Table";
 import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
+import ComponentTitle from "@/components/CMS/Title";
 
 export default function TerapheuticContractsList() {
   const [totalPages, setTotalPages] = useState<number | undefined>(1);
@@ -45,12 +46,15 @@ export default function TerapheuticContractsList() {
   }
 
   return (
-    <TableList
-      data={data}
-      headers={tableHeaders}
-      totalPages={totalPages}
-      currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
-    />
+    <>
+      <ComponentTitle title="Contratos Terapéuticos" type="h1" size="lg" />
+      <TableList
+        data={data}
+        headers={tableHeaders}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+    </>
   );
 }

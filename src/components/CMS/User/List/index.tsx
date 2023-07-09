@@ -6,6 +6,7 @@ import { apiError } from "@/helpers/CMS/messages";
 
 import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
 import TableList from "../../Table";
+import ComponentTitle from "../../Title";
 
 export default function UsersList() {
   const [totalPages, setTotalPages] = useState<number | undefined>(1);
@@ -42,12 +43,15 @@ export default function UsersList() {
   }
 
   return (
-    <TableList
-      data={data}
-      headers={tableHeaders}
-      totalPages={totalPages}
-      currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
-    />
+    <>
+      <ComponentTitle title="Pacientes" type="h1" />
+      <TableList
+        data={data}
+        headers={tableHeaders}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+    </>
   );
 }

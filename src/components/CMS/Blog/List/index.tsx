@@ -9,6 +9,8 @@ import setNumberOfPages from "@/utils/setNumberOfPages";
 import ButtonActions from "../../Forms/ActionsButtons";
 import Pagination from "../../Pagination";
 import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
+import ComponentTitle from "../../Title";
+
 import {
   Table,
   TableContainer,
@@ -51,6 +53,7 @@ export default function PostsList() {
     <>
       {data ? (
         <>
+          <ComponentTitle title="Lista de Artigos" type="h1" size="lg" />
           <TableContainer>
             <Table variant="striped" size="sm" colorScheme="green">
               <Thead>

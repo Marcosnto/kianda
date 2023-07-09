@@ -1,3 +1,6 @@
+import { useForm, SubmitHandler } from "react-hook-form";
+
+import ComponentTitle from "@/components/CMS/Title";
 import { Article } from "@/helpers/CMS/types/blog";
 import {
   Box,
@@ -5,12 +8,10 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Heading,
   Input,
   Stack,
   Textarea,
 } from "@chakra-ui/react";
-import { useForm, SubmitHandler } from "react-hook-form";
 
 export default function Post() {
   const {
@@ -45,10 +46,7 @@ export default function Post() {
 
   return (
     <>
-      <Heading textAlign="center" mb="10" as="h1" size="xl">
-        Novo Artigo
-      </Heading>
-
+      <ComponentTitle title="Novo Artigo" type="h1" size="lg" />
       <form typeof="form" onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDirection="column" gap="8">
           <Stack spacing={8} direction="row">

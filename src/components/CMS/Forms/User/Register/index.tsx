@@ -1,32 +1,26 @@
-import NextLink from "next/link";
-import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useCookies } from "react-cookie";
 
 import { RegisterProps } from "@/helpers/CMS/types/forms";
 
+import ComponentTitle from "@/components/CMS/Title";
+import RequiredInput from "../../RequiredInput";
 import {
   FormControl,
   FormLabel,
   FormErrorMessage,
   Input,
-  RadioGroup,
   Stack,
-  Radio,
-  Heading,
-  Divider,
   Flex,
   Button,
-  Checkbox,
-  Link,
 } from "@chakra-ui/react";
-import RequiredInput from "../../RequiredInput";
 
 function UserRegister() {
+  const [cookies] = useCookies(["token"]);
   const {
     register,
     getValues,
     handleSubmit,
-    watch,
     formState: { errors, isSubmitting, isValid },
   } = useForm<RegisterProps>();
 
@@ -34,19 +28,14 @@ function UserRegister() {
     fetch(process.env.NEXT_PUBLIC_BASE_URL + "/user" || "", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${cookies.token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         fullName: data.fullName,
-        bornDate: data.bornDate,
         email: data.email,
         password: data.password,
-        // pronouns: data.pronouns,
-        gender: data.gender,
-        otherGender: data.otherGender,
-        disabledPerson: data.disabledPerson,
-        disabledPersonDescription: data.disabledPersonDescription,
-        acceptTerms: data.acceptTerm,
+        acceptTerms: false,
       }),
     }).then((response) => {
       response.json().then((response) => console.log(response));
@@ -61,10 +50,7 @@ function UserRegister() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Heading as="h2" size="md" mb="2" textAlign="center">
-        Cadastrar Paciente
-      </Heading>
-      <Divider mb="5" />
+      <ComponentTitle title="Cadastrar Paciente" type="h1" />
       <Flex flexDir="column" gap="5" mb="10">
         <FormControl isInvalid={!!errors.fullName}>
           <FormLabel htmlFor="fullName">

@@ -9,7 +9,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Tfoot,
   Th,
   Thead,
   Tr,
@@ -47,13 +46,6 @@ export default function TableList({
                   </Tr>
                 ))}
               </Tbody>
-              <Tfoot>
-                <Tr>
-                  {headers.map((header) => (
-                    <Th key={header.key}>{header.name}</Th>
-                  ))}
-                </Tr>
-              </Tfoot>
             </Table>
           </TableContainer>
           <Pagination

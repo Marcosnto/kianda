@@ -12,14 +12,13 @@ import {
   RadioGroup,
   Stack,
   Radio,
-  Heading,
-  Divider,
   Flex,
   Button,
   Checkbox,
   Link,
 } from "@chakra-ui/react";
 import RequiredInput from "../../RequiredInput";
+import ComponentTitle from "@/components/CMS/Title";
 
 function UserAutoRegister() {
   const privacyPolicyLink = process.env.NEXT_PUBLIC_PRIVACY_POLICY;
@@ -75,10 +74,7 @@ function UserAutoRegister() {
         borderRadius: "6px",
       }}
     >
-      <Heading as="h2" size="md" mb="2" textAlign="center">
-        Criar conta
-      </Heading>
-      <Divider mb="5" />
+      <ComponentTitle title="Criar conta" type="h1" />
       <Flex flexDir="column" gap="5" mb="10">
         <FormControl isInvalid={!!errors.fullName}>
           <FormLabel htmlFor="fullName">

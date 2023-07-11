@@ -39,7 +39,7 @@ export default function TableList({
                   <Tr key={user.id}>
                     <Td>{user.id}</Td>
                     <Td>{user.name}</Td>
-                    <Td>{getStatusBadge(user.status)}</Td>
+                    <Td>{getStatusBadge(user.registerStatus || "")}</Td>
                     <Td>
                       <ButtonActions />
                     </Td>

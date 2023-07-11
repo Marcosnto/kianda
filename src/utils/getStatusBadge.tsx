@@ -16,17 +16,17 @@ export default function getStatusBadge(status: string) {
       break;
 
     /** User Status */
-    case "ativo":
+    case "0":
+      colorScheme = "orange";
+      statusName = "Aguardando Aprovação";
+      break;
+    case "1":
       colorScheme = "blue";
       statusName = "Ativo";
       break;
-    case "suspenso":
+    case "2":
       colorScheme = "red";
       statusName = "Suspenso";
-      break;
-    case "aguardando aprovação":
-      colorScheme = "orange";
-      statusName = "Aguardando Aprovação";
       break;
 
     /** Contract Status */
@@ -39,6 +39,8 @@ export default function getStatusBadge(status: string) {
       statusName = "Incompleto";
       break;
     default:
+      colorScheme = "";
+      statusName = "-";
       break;
   }
 

@@ -2,9 +2,9 @@ import { Dispatch, SetStateAction } from "react";
 
 export type UserProps = {
   id: number;
-  type: number;
+  type?: number;
   name: string;
-  status: string;
+  registerStatus: string;
 };
 
 export type TableHeadersProps = {

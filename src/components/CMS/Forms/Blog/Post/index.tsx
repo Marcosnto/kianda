@@ -11,12 +11,16 @@ import {
   Input,
   Stack,
   Textarea,
+  useToast,
 } from "@chakra-ui/react";
 
 export default function Post() {
+  const toast = useToast();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Article>();
 
@@ -39,6 +43,22 @@ export default function Post() {
       }),
     }).then((response) => {
       console.log(response);
+      if (response.ok) {
+        toast({
+          title: `Artigo publicado com sucesso!`,
+          position: "top",
+          status: "success",
+          isClosable: true,
+        });
+        reset();
+      } else {
+        toast({
+          title: `Ocorreu um erro no servidor`,
+          position: "top",
+          status: "error",
+          isClosable: true,
+        });
+      }
     });
   }
 
@@ -87,7 +107,7 @@ export default function Post() {
 
           <Stack spacing={8} direction="row">
             <FormControl isInvalid={!!errors.description} isRequired>
-              <FormLabel htmlFor="description">Descrição</FormLabel>
+              <FormLabel htmlFor="description">Resumo</FormLabel>
 
               <Input
                 id="description"

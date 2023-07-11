@@ -17,6 +17,7 @@ import {
   Checkbox,
   Link,
   useBoolean,
+  useToast,
 } from "@chakra-ui/react";
 import RequiredInput from "../../RequiredInput";
 import ComponentTitle from "@/components/CMS/Title";
@@ -28,6 +29,8 @@ function UserAutoRegister() {
   const useTermsLink = process.env.NEXT_PUBLIC_USE_TERMS;
 
   const router = useRouter();
+  const toast = useToast();
+
   const {
     register,
     getValues,
@@ -55,9 +58,16 @@ function UserAutoRegister() {
         acceptTerms: data.acceptTerm,
       }),
     }).then((response) => {
-      response.json().then(() => {
+      if (response.ok) {
         setModalStatus.on();
-      });
+      } else {
+        toast({
+          title: `Ocorreu um erro ao registrar!`,
+          position: "top",
+          status: "error",
+          isClosable: true,
+        });
+      }
     });
   }
 

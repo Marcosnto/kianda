@@ -7,10 +7,12 @@ import { apiError } from "@/helpers/CMS/messages";
 import ArticleSkeleton from "@/components/Global/ArticleSkeleton";
 import TableList from "../../Table";
 import ComponentTitle from "../../Title";
+import { useCookies } from "react-cookie";
 
 export default function UsersList() {
   const [totalPages, setTotalPages] = useState<number | undefined>(1);
-  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [cookies] = useCookies(["token"]);
   const tableHeaders = [
     { name: "ID", key: "User-ID" },
     { name: "Nome", key: "User-Name" },
@@ -24,13 +26,18 @@ export default function UsersList() {
       {
         method: "GET",
         headers: {
+          Authorization: `Bearer ${cookies.token}`,
           "Content-Type": "application/json",
         },
       }
     ).then((res) => {
-      const totalItens = res.headers.get("X-Total-Count");
-      setTotalPages(setNumberOfPages(totalItens));
-      return res.json();
+      if (res.ok) {
+        const totalItens = res.headers.get("X-Total-Count");
+        setTotalPages(setNumberOfPages(totalItens));
+        return res.json();
+      } else {
+        throw new Error("Ocorreu um erro ao obter os dados");
+      }
     })
   );
 
